@@ -5,6 +5,8 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
+import { AsdComponent } from './agile/asd/asd.component'; // Import the ASD component
+
 
 const routes: Routes = [{
   path: '',
@@ -67,6 +69,10 @@ const routes: Routes = [{
       path: 'miscellaneous',
       loadChildren: () => import('./miscellaneous/miscellaneous.module')
         .then(m => m.MiscellaneousModule),
+    },
+    {
+      path: 'agile/asd', // Add the route for ASD
+      component: AsdComponent,
     },
     {
       path: '',

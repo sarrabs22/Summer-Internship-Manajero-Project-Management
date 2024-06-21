@@ -26,6 +26,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/agile/rad',
       },
       {
+        title: 'Adaptive Software Development (ASD)', ////////
+        link: '/pages/agile/asd', 
+      },
+      {
         title: 'Test-Driven Development (TDD)',
         link: '/pages/agile/tdd',
       },
