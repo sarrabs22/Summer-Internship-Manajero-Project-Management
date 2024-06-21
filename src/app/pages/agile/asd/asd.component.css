@@ -1,0 +1,46 @@
+.container {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    color: #2e3a59;
+    margin-bottom: 10px;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: 10px;
+  }
+  
+  p.lead {
+    font-size: 1.25rem;
+    color: #6c757d;
+  }
+  
+  .card-header {
+    font-size: 1.5rem;
+  }
+  
+  .card-body ul {
+    padding-left: 20px;
+  }
+  
+  .card-body ul li {
+    margin-bottom: 10px;
+  }
+  
+  .card {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
