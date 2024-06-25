@@ -83,31 +83,85 @@
       <h2 class="card-title">Application Dashboard</h2>
     </div>
     <div class="card-body">
-      <h3>Forms</h3>
-      <p>Forms are used for managing changes, planning iterations, and continuous evaluation. They help track progress and ensure that all stakeholders are aligned.</p>
-      <form>
-        <div class="form-group">
-          <label for="iterationName">Iteration Name</label>
-          <input type="text" class="form-control" id="iterationName" placeholder="Enter iteration name">
+      <div class="container mt-5">
+        <div class="row justify-content-center">
+          <div class="col-12 text-center">
+            <h1>Adaptive Software Development (ASD) Dashboard</h1>
+            <p class="lead">Manage your software development process using the ASD methodology.</p>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="startDate">Start Date</label>
-          <input type="date" class="form-control" id="startDate">
+      
+        <div class="row mt-4">
+          <!-- Speculate Phase -->
+          <div class="col-md-4">
+            <div class="card phase-card">
+              <div class="card-header bg-primary text-white">
+                <h2 class="card-title">Speculate</h2>
+              </div>
+              <div class="card-body">
+                <p>Plan and define the initial project scope and objectives.</p>
+                <form>
+                  <div class="form-group">
+                    <label for="speculateTasks">Tasks</label>
+                    <textarea class="form-control" id="speculateTasks" rows="5" placeholder="Enter tasks for the speculate phase"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="speculateGoals">Goals</label>
+                    <textarea class="form-control" id="speculateGoals" rows="3" placeholder="Enter goals for the speculate phase"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Save Speculate</button>
+                </form>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Collaborate Phase -->
+          <div class="col-md-4">
+            <div class="card phase-card">
+              <div class="card-header bg-success text-white">
+                <h2 class="card-title">Collaborate</h2>
+              </div>
+              <div class="card-body">
+                <p>Work together to develop and deliver the software incrementally.</p>
+                <form>
+                  <div class="form-group">
+                    <label for="collaborateTasks">Tasks</label>
+                    <textarea class="form-control" id="collaborateTasks" rows="5" placeholder="Enter tasks for the collaborate phase"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="collaborateProgress">Progress</label>
+                    <textarea class="form-control" id="collaborateProgress" rows="3" placeholder="Enter progress for the collaborate phase"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-success">Save Collaborate</button>
+                </form>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Learn Phase -->
+          <div class="col-md-4">
+            <div class="card phase-card">
+              <div class="card-header bg-info text-white">
+                <h2 class="card-title">Learn</h2>
+              </div>
+              <div class="card-body">
+                <p>Reflect on the process and gather feedback for continuous improvement.</p>
+                <form>
+                  <div class="form-group">
+                    <label for="learnFeedback">Feedback</label>
+                    <textarea class="form-control" id="learnFeedback" rows="5" placeholder="Enter feedback for the learn phase"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="learnImprovements">Improvements</label>
+                    <textarea class="form-control" id="learnImprovements" rows="3" placeholder="Enter improvements for the learn phase"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-info">Save Learn</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="endDate">End Date</label>
-          <input type="date" class="form-control" id="endDate">
-        </div>
-        <div class="form-group">
-          <label for="goals">Iteration Goals</label>
-          <textarea class="form-control" id="goals" rows="3" placeholder="Enter iteration goals"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="feedback">Feedback</label>
-          <textarea class="form-control" id="feedback" rows="3" placeholder="Enter feedback"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+      </div>
     </div>
   </div>
 </div>
