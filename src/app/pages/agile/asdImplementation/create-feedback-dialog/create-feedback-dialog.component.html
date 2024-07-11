@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Create Feedback</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Comment" [(ngModel)]="newFeedback.comment">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Rating" type="number" [(ngModel)]="newFeedback.rating">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Given By" [(ngModel)]="newFeedback.givenBy">
+      <mat-option *ngFor="let user of users" [value]="user">
+        {{ user.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Task" [(ngModel)]="newFeedback.task">
+      <mat-option *ngFor="let task of tasks" [value]="task">
+        {{ task.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onCreate()">Create</button>
+</div>

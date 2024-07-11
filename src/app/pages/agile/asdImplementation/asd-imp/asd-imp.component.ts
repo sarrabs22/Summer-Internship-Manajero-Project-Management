@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { UserService } from '../Services/user.service';
+import { ProjectService } from '../Services/project.service';
+import { TaskService } from '../Services/task.service';
+import { FeedbackService } from '../Services/feedback.service';
+
 @Component({
   selector: 'ngx-asd-imp',
   templateUrl: './asd-imp.component.html',
@@ -8,80 +13,83 @@ import { HttpClient } from '@angular/common/http';
 })
 export class  AsdImpComponent{
   newUser: any = {};
-  userId: string = '';
+
+  userId: string;
   user: any;
 
   newProject: any = {};
-  projectId: string = '';
+  projectId: string;
   project: any;
 
   newTask: any = {};
-  taskId: string = '';
+  taskId: string;
   task: any;
 
   newFeedback: any = {};
-  feedbackId: string = '';
+  feedbackId: string;
   feedback: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private userService: UserService,
+    private projectService: ProjectService,
+    private taskService: TaskService,
+    private feedbackService: FeedbackService
+  ) {}
 
+  // User Management
   createUser() {
-    this.http.post('/api/users', this.newUser)
-      .subscribe(response => {
-        console.log('User created:', response);
-        this.newUser = {};
-      });
+    this.userService.createUser(this.newUser).subscribe(response => {
+      console.log('User created:', response);
+    });
   }
 
   getUser() {
-    this.http.get(`/api/users/${this.userId}`)
-      .subscribe(response => {
-        this.user = response;
-      });
+    this.userService.getUserById(this.userId).subscribe(response => {
+      this.user = response;
+      console.log('User fetched:', response);
+    });
   }
 
+  // Project Management
   createProject() {
-    this.http.post('/api/projects', this.newProject)
-      .subscribe(response => {
-        console.log('Project created:', response);
-        this.newProject = {};
-      });
+    this.projectService.createProject(this.newProject).subscribe(response => {
+      console.log('Project created:', response);
+    });
   }
 
   getProject() {
-    this.http.get(`/api/projects/${this.projectId}`)
-      .subscribe(response => {
-        this.project = response;
-      });
+    this.projectService.getProjectById(this.projectId).subscribe(response => {
+      this.project = response;
+      console.log('Project fetched:', response);
+    });
   }
 
+  // Task Management
   createTask() {
-    this.http.post('/api/tasks', this.newTask)
-      .subscribe(response => {
-        console.log('Task created:', response);
-        this.newTask = {};
-      });
+    this.taskService.createTask(this.newTask).subscribe(response => {
+      console.log('Task created:', response);
+    });
   }
 
   getTask() {
-    this.http.get(`/api/tasks/${this.taskId}`)
-      .subscribe(response => {
-        this.task = response;
-      });
+    this.taskService.getTaskById(this.taskId).subscribe(response => {
+      this.task = response;
+      console.log('Task fetched:', response);
+    });
   }
 
+  // Feedback Management
   createFeedback() {
-    this.http.post('/api/feedbacks', this.newFeedback)
-      .subscribe(response => {
-        console.log('Feedback created:', response);
-        this.newFeedback = {};
-      });
+    this.feedbackService.createFeedback(this.newFeedback).subscribe(response => {
+      console.log('Feedback created:', response);
+    });
   }
 
   getFeedback() {
-    this.http.get(`/api/feedbacks/${this.feedbackId}`)
-      .subscribe(response => {
-        this.feedback = response;
-      });
+    this.feedbackService.getFeedbackById(this.feedbackId).subscribe(response => {
+      this.feedback = response;
+      console.log('Feedback fetched:', response);
+    });
+
   }
 }
