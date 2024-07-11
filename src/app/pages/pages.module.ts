@@ -8,12 +8,20 @@ import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { AsdComponent } from './agile/asd/asd.component';
-import { NbCardModule, NbStepperModule, NbAccordionModule } from '@nebular/theme';
-import { AsdImpComponent } from './agile/asdImplementation/asd-imp/asd-imp.component';
+
+
+
 import { DashboardComponent } from './agile/asdImplementation/dashboard/dashboard.component';
 import { CreateProjectDialogComponent } from './agile/asdImplementation/create-project-dialog/create-project-dialog.component';
 import { CreateTaskDialogComponent } from './agile/asdImplementation/create-task-dialog/create-task-dialog.component';
 import { CreateFeedbackDialogComponent } from './agile/asdImplementation/create-feedback-dialog/create-feedback-dialog.component';
+
+import { NbCardModule, NbStepperModule,NbAccordionModule } from '@nebular/theme';
+import { AsdImpComponent } from './agile/asdImplementation/asd-imp/asd-imp.component';
+import { FormsModule } from '@angular/forms';  // Import Angular FormsModule
+import { NbThemeModule, NbLayoutModule, NbListModule, NbInputModule, NbButtonModule, NbSelectModule } from '@nebular/theme';
+
+
 
 // Import Angular Material modules
 import { MatCardModule } from '@angular/material/card';
@@ -39,6 +47,7 @@ import { MatSelectModule } from '@angular/material/select';
     NbCardModule,
     NbStepperModule,
     NbAccordionModule,
+
     MatCardModule,
     MatButtonModule,
     MatInputModule,
@@ -53,15 +62,18 @@ import { MatSelectModule } from '@angular/material/select';
   
 
     
+
   ],
   declarations: [
     PagesComponent,
     AsdComponent,
     AsdImpComponent,
+
     DashboardComponent,
     CreateProjectDialogComponent,
     CreateTaskDialogComponent,
     CreateFeedbackDialogComponent,
+
   ],
 })
 export class PagesModule {}

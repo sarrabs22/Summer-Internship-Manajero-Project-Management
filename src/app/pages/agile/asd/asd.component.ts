@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-asd',
@@ -12,9 +12,9 @@ export class AsdComponent implements OnInit {
   firstForm: UntypedFormGroup;
   secondForm: UntypedFormGroup;
   thirdForm: UntypedFormGroup;
+  steps: any[] = [];
 
-  constructor(private fb: UntypedFormBuilder) {
-  }
+  constructor(private fb: UntypedFormBuilder) { }
 
   ngOnInit() {
     this.firstForm = this.fb.group({
@@ -28,17 +28,8 @@ export class AsdComponent implements OnInit {
     this.thirdForm = this.fb.group({
       thirdCtrl: ['', Validators.required],
     });
+
   }
 
-  onFirstSubmit() {
-    this.firstForm.markAsDirty();
-  }
 
-  onSecondSubmit() {
-    this.secondForm.markAsDirty();
-  }
-
-  onThirdSubmit() {
-    this.thirdForm.markAsDirty();
-  }
 }

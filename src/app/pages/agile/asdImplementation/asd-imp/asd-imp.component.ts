@@ -13,6 +13,7 @@ import { FeedbackService } from '../Services/feedback.service';
 })
 export class  AsdImpComponent{
   newUser: any = {};
+
   userId: string;
   user: any;
 
@@ -89,5 +90,6 @@ export class  AsdImpComponent{
       this.feedback = response;
       console.log('Feedback fetched:', response);
     });
+
   }
 }
