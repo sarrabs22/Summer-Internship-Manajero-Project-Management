@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { AsdComponent } from './agile/asd/asd.component'; // Import the ASD component
+import { AsdImpComponent } from './agile/asdImplementation/asd-imp/asd-imp.component';
 
 
 const routes: Routes = [{
@@ -73,6 +74,10 @@ const routes: Routes = [{
     {
       path: 'agile/asd', // Add the route for ASD
       component: AsdComponent,
+    },
+    {
+      path: 'agile/asd-imp', 
+      component: AsdImpComponent,
     },
     {
       path: '',

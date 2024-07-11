@@ -1,370 +1,204 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-
-    :root {
-      --background-color: #f8f9fa;
-      --text-color: #2e3a59;
-      --card-background-color: #ffffff;
-      --card-header-background-color: #2e3a59;
-      --card-header-text-color: white;
-      --card-border-color: #007bff;
-      --icon-color: #007bff;
-    }
-
-    [data-theme="dark"] {
-      --background-color: #2e3a59;
-      --text-color: #f8f9fa;
-      --card-background-color: #3a3f51;
-      --card-header-background-color: #2e3a59;
-      --card-header-text-color: white;
-      --card-border-color: #1a73e8;
-      --icon-color: #1a73e8;
-    }
-
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: var(--background-color);
-      color: var(--text-color);
-    }
-
-    .container {
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      color: var(--text-color);
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      font-size: 1.75rem;
-      margin-bottom: 10px;
-    }
-
-    p.lead {
-      font-size: 1.25rem;
-      color: var(--text-color);
-    }
-
-    .card {
-      background-color: var(--card-background-color);
-      border: none;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    .card-header {
-      font-size: 1.5rem;
-      background-color: var(--card-header-background-color);
-      color: var(--card-header-text-color);
-      border-bottom: 2px solid var(--card-border-color);
-    }
-
-    .card-body ul {
-      padding-left: 20px;
-    }
-
-    .card-body ul li {
-      margin-bottom: 10px;
-      display: flex;
-      align-items: start;
-    }
-
-    .card-body ul li i {
-      font-size: 1.5rem;
-      color: var(--icon-color);
-      margin-right: 10px;
-    }
-
-    .img-fluid {
-      max-width: 100%;
-      height: auto;
-    }
-
-    .form-group label {
-      font-weight: bold;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      border-radius: 4px;
-      box-shadow: none;
-      transition: box-shadow 0.2s;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
-    }
-
-    .btn-primary {
-      background-color: var(--card-border-color);
-      border-color: var(--card-border-color);
-      border-radius: 4px;
-      box-shadow: none;
-      transition: background-color 0.2s, border-color 0.2s;
-    }
-
-    .btn-primary:hover {
-      background-color: #0056b3;
-      border-color: #0056b3;
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-
-    .phase-card {
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .phase-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-    }
-
-    .icon {
-      font-size: 1.75rem;
-      color: var(--icon-color);
-      margin-right: 10px;
-    }
-
-    .text-section {
-      margin-bottom: 15px;
-    }
-
-    .quadrant {
-      border: 1px solid #ddd;
-      padding: 15px;
-      border-radius: 8px;
-      text-align: center;
-      height: 100%;
-    }
-  </style>
-  <title>Adaptive Software Development (ASD)</title>
-</head>
-<body data-theme="light">
-
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-12 text-center">
-      <h1 class="animate__fadeInDown">Adaptive Software Development (ASD)</h1>
-      <p class="lead animate__fadeInUp">ASD is an agile method emphasizing adaptability and responsiveness to changes, using iterative development cycles.</p>
-      <img src="assets/images/asd_overview.png" alt="ASD Overview" class="img-fluid my-4 animate__zoomIn" height="700" width="700">
-    </div>
-  </div>
-
-  <div class="row mt-4">
-    <div class="col-md-6 mb-4">
-      <!-- Methodology Summary -->
-      <div class="card h-100 animate__fadeInLeft">
-        <div class="card-header">
-          <h2 class="card-title">Methodology Overview</h2>
-        </div>
-        <div class="card-body">
-          <div class="text-section">
-            <div>
-              <h4><i class="fas fa-lightbulb icon"></i>Concept</h4>
-              <p>Adaptive Software Development (ASD) is an agile methodology that emphasizes continuous adaptation and learning. It was created by project managers Jim Highsmith and Sam Bayer to address the need for flexibility and responsiveness in software development.</p>
+<nb-card class="col-md-12 col-lg-12 col-xxxl-12">
+  <nb-card-body>
+    <nb-stepper orientation="horizontal">
+      <!-- Why Adaptive Software Development -->
+      <nb-step label="Introduction ASD">
+        <div class="asd-container">
+          <h1><i class="fas fa-question-circle"></i> Why Adaptive Software Development?</h1>
+          <div class="grid">
+            <div class="text-section">
+              <p>
+                <strong>Origins:</strong> Adaptive Software Development (ASD) emerged in the mid-1990s as an innovative response to the rigidity and limitations of traditional methodologies like the Waterfall model. Developed by Jim Highsmith, ASD is rooted in collaboration, learning, and adaptation—cornerstones for thriving in dynamic environments.
+              </p>
+              <p>
+                <strong>Methodology:</strong> Unlike traditional methods that rely on upfront planning and linear project execution, ASD advocates for a flexible and iterative approach characterized by a cycle of speculation, collaboration, and learning. This flexibility helps teams quickly adapt to changing requirements, which is crucial in projects influenced by market and technological shifts.
+              </p>
+            </div>
+            <div class="text-section">
+              <p>
+                <strong>Impact:</strong> By integrating regular feedback loops and encouraging ongoing reassessment of project directions, ASD enables organizations to align software development more closely with user needs and current market conditions. It empowers teams to experiment, innovate, and learn from failures without the constraints of a fixed plan.
+              </p>
             </div>
           </div>
-          <div class="text-section">
-            <div>
-              <h4><i class="fas fa-sync icon"></i>Iterative Cycles</h4>
-              <p>ASD focuses on iterative development cycles, allowing teams to make necessary adjustments throughout the project to ensure the final product meets user needs and expectations.</p>
+          <div class="asd-process-flow">
+            <div class="process-step">
+              <h3><i class="fas fa-users"></i> Collaboration</h3>
+              <ul>
+                <li>Requirement Gatherings</li>
+                <li>JAD (Joint Application Design)</li>
+                <li>Mini specs</li>
+              </ul>
+            </div>
+            <div class="process-step">
+              <h3><i class="fas fa-lightbulb"></i> Speculations</h3>
+              <ul>
+                <li>Adaptive cycle planning</li>
+                <li>Uses mission statement</li>
+              </ul>
+            </div>
+            <div class="process-step">
+              <h3><i class="fas fa-book-open"></i> Learning</h3>
+              <ul>
+                <li>Components implemented/tested</li>
+                <li>Focus ensures ongoing feedback</li>
+              </ul>
             </div>
           </div>
-          <div class="text-section">
-            <div>
-              <h4><i class="fas fa-users icon"></i>Collaboration</h4>
-              <p>ASD promotes collaboration among team members and stakeholders, ensuring that everyone is aligned and working towards the same goals.</p>
-            </div>
-          </div>
-          <div class="text-section">
-            <div>
-              <h4><i class="fas fa-chart-line icon"></i>Continuous Improvement</h4>
-              <p>Through constant feedback and learning, ASD encourages continuous improvement and adaptation to changing requirements and environments.</p>
-            </div>
+          <div class="image-container">
+            <img src="assets/images/ASDLifeCycle.png" alt="ASD Lifecycle" class="img-fluid my-4">
           </div>
         </div>
-      </div>
-    </div>
-    <div class="col-md-6 mb-4">
-      <!-- Advantages and Limitations -->
-      <div class="card h-100 animate__fadeInRight">
-        <div class="card-header">
-          <h2 class="card-title">Advantages and Limitations</h2>
-        </div>
-        <div class="card-body">
-          <ul>
-            <li><i class="fas fa-exchange-alt"></i><div><strong>Flexibility:</strong> ASD allows teams to adapt to changing requirements and feedback throughout the project lifecycle. This flexibility ensures that the final product aligns closely with user needs and expectations, even as they evolve.</div></li>
-            <li><i class="fas fa-check-circle"></i><div><strong>Improved Quality:</strong> The iterative nature of ASD promotes continuous testing and integration. By regularly incorporating feedback and making incremental improvements, teams can enhance the quality of the software over time, reducing bugs and issues.</div></li>
-            <li><i class="fas fa-tachometer-alt"></i><div><strong>Faster Delivery:</strong> By breaking the project into smaller, manageable iterations, ASD enables quicker delivery of functional software. This incremental approach allows teams to release usable features sooner, providing value to users at an early stage.</div></li>
-            <li><i class="fas fa-shield-alt"></i><div><strong>Risk Management:</strong> ASD's emphasis on regular reviews and iterative development helps identify and mitigate risks early in the process. By addressing potential issues promptly, teams can avoid larger problems later in the project.</div></li>
-            <li><i class="fas fa-users"></i><div><strong>Collaboration:</strong> ASD encourages close collaboration among team members and stakeholders. Frequent communication and feedback loops foster a collaborative environment, improving team cohesion and ensuring that all voices are heard.</div></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="row mt-4">
-    <!-- Exhaustive Tutorial Grid -->
-    <div class="col-md-6 mb-4">
-      <div class="card h-100 animate__fadeInUp">
-        <div class="card-header">
-          <h2 class="card-title">Exhaustive Tutorial</h2>
+        <div class="grid-container">
+          <div class="advantages">
+            <h3><i class="fa fa-thumbs-up"></i> Advantages of ASD</h3>
+            <ul>
+              <li><i class="fa fa-check-circle"></i> Flexibility in changing environments</li>
+              <li><i class="fa fa-check-circle"></i> Increased stakeholder engagement</li>
+              <li><i class="fa fa-check-circle"></i> Faster time-to-market</li>
+              <li><i class="fa fa-check-circle"></i> Promotes innovation</li>
+              <li><i class="fa fa-check-circle"></i> Improved risk management</li>
+            </ul>
+          </div>
+          <div class="limitations">
+            <h3><i class="fa fa-exclamation-triangle"></i> Limitations of ASD</h3>
+            <ul>
+              <li><i class="fa fa-times-circle"></i> Dependence on team expertise</li>
+              <li><i class="fa fa-times-circle"></i> Potential for scope creep</li>
+              <li><i class="fa fa-times-circle"></i> Requires high commitment from all stakeholders</li>
+              <li><i class="fa fa-times-circle"></i> Difficulty in long-term planning</li>
+              <li><i class="fa fa-times-circle"></i> Challenging to scale</li>
+            </ul>
+          </div>
         </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-6 quadrant">
-              <h4>Why</h4>
+
+        <button nbButton nbStepperPrevious disabled>Prev</button>
+        <button nbButton nbStepperNext>Next</button>
+      </nb-step>
+
+      <!-- What is Adaptive Software Development -->
+      <nb-step label="Exhaustive Tutorial">
+        <h3>What is Adaptive Software Development?</h3>
+        <p>
+          ASD is a project management framework designed for complex systems where requirements evolve rapidly. It emphasizes collaboration, learning, and flexibility, utilizing iterative cycles of Speculate, Collaborate, and Learn.
+        </p>
+
+        <div class="card h-100 animate__fadeInUp">
+          <div class="card-header">
+            <h2 class="card-title"> </h2>
+          </div>
+          <div class="card-body">
+            <div class="quadrant">
+              <h4><i class="fas fa-question-circle"></i> Why</h4>
               <p>The need for flexibility and adaptability in software development has driven the adoption of methodologies like ASD, which help teams handle dynamic requirements and ensure the final product meets user expectations.</p>
             </div>
-            <div class="col-md-6 quadrant">
-              <h4>What</h4>
+            <div class="quadrant">
+              <h4><i class="fas fa-cogs"></i> What</h4>
               <p>ASD focuses on continuous adaptation and learning, with three main phases: Speculate, Collaborate, and Learn. These phases help manage uncertainty and drive the project towards successful outcomes.</p>
             </div>
-          </div>
-          <div class="row mt-4">
-            <div class="col-md-6 quadrant">
-              <h4>How</h4>
+            <div class="quadrant">
+              <h4><i class="fas fa-user-friends"></i> How</h4>
               <p>Implementing ASD involves initial planning (Speculate), collaborative development (Collaborate), and iterative learning (Learn). Teams use practices like pair programming, code reviews, and daily stand-ups to ensure alignment and continuous improvement.</p>
             </div>
-            <div class="col-md-6 quadrant">
-              <h4>What if</h4>
+            <div class="quadrant">
+              <h4><i class="fas fa-tools"></i> What if</h4>
               <p>ASD can be adapted to various environments and challenges, such as integrating with other agile methodologies like Scrum or Kanban. It can also be tailored to fit the specific needs of different projects or organizational structures.</p>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="col-md-6 mb-4">
-      <!-- ASD Lifecycle -->
-      <div class="card h-100 animate__fadeInDown">
-        <div class="card-header">
-          <h2 class="card-title">ASD Lifecycle</h2>
-        </div>
-        <div class="card-body">
-          <p>Adaptive Software Development (ASD) is an iterative lifecycle that emphasizes rapid delivery, continuous feedback, and flexibility to changing requirements. It focuses on collaboration and learning, allowing teams to refine software in short cycles. Key phases include speculation, collaboration, and learning, promoting a responsive and resilient development process.</p>
-          <div class="text-center">
-            <img src="assets/images/ASDLifeCycle.png" alt="ASD Lifecycle" class="img-fluid my-4" height="400" width="400">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="card h-100 animate__fadeInUp">
-    <div class="card-header">
-      <h2 class="card-title">Adaptive Software Development (ASD) Dashboard</h2>
-    </div>
-    <div class="card-body">
-      <div class="container mt-5">
-        <div class="row justify-content-center">
-          <div class="col-12 text-center">
-            <h1>Adaptive Software Development (ASD) Dashboard</h1>
-            <p class="lead">Manage your software development process using the ASD methodology.</p>
-          </div>
-        </div>
+        <button nbButton nbStepperPrevious>Prev</button>
+        <button nbButton nbStepperNext>Next</button>
+      </nb-step>
 
-        <div class="row mt-4">
-          <!-- Speculate Phase -->
-          <div class="col-md-4">
-            <div class="card phase-card">
-              <div class="card-header bg-primary text-white">
-                <h2 class="card-title">Speculate</h2>
-              </div>
-              <div class="card-body">
-                <p>Plan and define the initial project scope and objectives.</p>
-                <form>
-                  <div class="form-group">
-                    <label for="speculateTasks">Tasks</label>
-                    <textarea class="form-control" id="speculateTasks" rows="5" placeholder="Enter tasks for the speculate phase"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="speculateGoals">Goals</label>
-                    <textarea class="form-control" id="speculateGoals" rows="3" placeholder="Enter goals for the speculate phase"></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-primary btn-block">Save Speculate</button>
-                </form>
-              </div>
+      <!-- How to Implement ASD -->
+      <nb-step label="How to Implement ASD">
+        <div class="application-dashboard">
+          <h3>How to Implement ASD?</h3>
+          <p>
+            Implementing ASD involves the use of iterative development cycles, constant feedback loops, and proactive change management. We'll explore case studies and practical tools to understand implementation.
+          </p>
+          <h4><i class="fas fa-tachometer-alt"></i> Application Dashboard</h4>
+          <p>The ASD methodology employs a dynamic application dashboard with several key functionalities:</p>
+          <div class="dashboard-grid">
+            <div class="dashboard-item">
+              <i class="fas fa-sitemap"></i>
+              <h5>Step Management</h5>
+              <p>Organizes and tracks different phases of software development.</p>
             </div>
-          </div>
-
-          <!-- Collaborate Phase -->
-          <div class="col-md-4">
-            <div class="card phase-card">
-              <div class="card-header bg-success text-white">
-                <h2 class="card-title">Collaborate</h2>
-              </div>
-              <div class="card-body">
-                <p>Work together to develop and deliver the software incrementally.</p>
-                <form>
-                  <div class="form-group">
-                    <label for="collaborateTasks">Tasks</label>
-                    <textarea class="form-control" id="collaborateTasks" rows="5" placeholder="Enter tasks for the collaborate phase"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="collaborateProgress">Progress</label>
-                    <textarea class="form-control" id="collaborateProgress" rows="3" placeholder="Enter progress for the collaborate phase"></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-success btn-block">Save Collaborate</button>
-                </form>
-              </div>
+            <div class="dashboard-item">
+              <i class="fas fa-calendar-alt"></i>
+              <h5>Iteration Planning</h5>
+              <p>Supports the planning and tracking of iterative development cycles.</p>
             </div>
-          </div>
-
-          <!-- Learn Phase -->
-          <div class="col-md-4">
-            <div class="card phase-card">
-              <div class="card-header bg-info text-white">
-                <h2 class="card-title">Learn</h2>
-              </div>
-              <div class="card-body">
-                <p>Reflect on the process and gather feedback for continuous improvement.</p>
-                <form>
-                  <div class="form-group">
-                    <label for="learnFeedback">Feedback</label>
-                    <textarea class="form-control" id="learnFeedback" rows="5" placeholder="Enter feedback for the learn phase"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="learnImprovements">Improvements</label>
-                    <textarea class="form-control" id="learnImprovements" rows="3" placeholder="Enter improvements for the learn phase"></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-info btn-block">Save Learn</button>
-                </form>
-              </div>
+            <div class="dashboard-item">
+              <i class="fas fa-edit"></i>
+              <h5>Change Management Forms</h5>
+              <p>Provides forms for handling changes effectively, ensuring adaptability.</p>
+            </div>
+            <div class="dashboard-item">
+              <i class="fas fa-chart-line"></i>
+              <h5>Continuous Evaluation</h5>
+              <p>Includes tools for ongoing assessment of the project's progress and success.</p>
             </div>
           </div>
         </div>
 
-      </div>
-    </div>
-  </div>
-</div>
+        <button nbButton nbStepperPrevious>Prev</button>
+        <button nbButton nbStepperNext>Next</button>
+      </nb-step>
 
-<script>
-  function toggleTheme() {
-    const body = document.body;
-    const currentTheme = body.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    body.setAttribute('data-theme', newTheme);
-  }
-</script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+      <!-- Summary -->
+      <nb-step label="Summary">
+        <h3>Summary of Adaptive Software Development (ASD)</h3>
+        <p>
+          Below is a summary of the key aspects of ASD we've discussed:
+        </p>
+
+        <!-- Accordion for summarizing previous discussions -->
+        <div class="accordion-container">
+          <nb-accordion multi>
+            <nb-accordion-item>
+              <nb-accordion-item-header>
+                Introduction to ASD
+              </nb-accordion-item-header>
+              <nb-accordion-item-body>
+                Adaptive Software Development (ASD) emerged as a response to the rigidity of traditional methods like the Waterfall model. It focuses on flexibility, collaboration, and learning to quickly adapt to changes.
+              </nb-accordion-item-body>
+            </nb-accordion-item>
+
+            <nb-accordion-item>
+              <nb-accordion-item-header>
+                Core Principles of ASD
+              </nb-accordion-item-header>
+              <nb-accordion-item-body>
+                ASD operates on a cycle of Speculate, Collaborate, and Learn, encouraging continuous adaptation and iterative learning to align development with user needs and market changes.
+              </nb-accordion-item-body>
+            </nb-accordion-item>
+
+            <nb-accordion-item>
+              <nb-accordion-item-header>
+                Key ASD Processes
+              </nb-accordion-item-header>
+              <nb-accordion-item-body>
+                The process includes Step Management, Iteration Planning, and Continuous Evaluation, supported by practical tools such as Change Management Forms and adaptive planning techniques.
+              </nb-accordion-item-body>
+            </nb-accordion-item>
+
+            <nb-accordion-item>
+              <nb-accordion-item-header>
+                Advantages and Limitations
+              </nb-accordion-item-header>
+              <nb-accordion-item-body>
+                ASD offers enhanced flexibility and faster time-to-market but requires high commitment and can be challenging to scale, highlighting the importance of skilled team dynamics and strong leadership.
+              </nb-accordion-item-body>
+            </nb-accordion-item>
+          </nb-accordion>
+        </div>
+
+        <button nbButton nbStepperPrevious>Prev</button>
+        <button nbButton routerLink="/agile/asd-imp">Use Method</button>
+      </nb-step>
+    </nb-stepper>
+  </nb-card-body>
+</nb-card>
