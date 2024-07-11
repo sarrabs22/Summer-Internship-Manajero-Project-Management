@@ -9,7 +9,9 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { AsdComponent } from './agile/asd/asd.component';
 import { NbCardModule, NbStepperModule,NbAccordionModule } from '@nebular/theme';
-
+import { AsdImpComponent } from './agile/asdImplementation/asd-imp/asd-imp.component';
+import { FormsModule } from '@angular/forms';  // Import Angular FormsModule
+import { NbThemeModule, NbLayoutModule, NbListModule, NbInputModule, NbButtonModule, NbSelectModule } from '@nebular/theme';
 
 
 
@@ -23,11 +25,13 @@ import { NbCardModule, NbStepperModule,NbAccordionModule } from '@nebular/theme'
     MiscellaneousModule,
     NbCardModule,
     NbStepperModule,
-    NbAccordionModule
+    NbAccordionModule,
+    FormsModule
   ],
   declarations: [
     PagesComponent,
     AsdComponent,
+    AsdImpComponent,
   ],
 })
 export class PagesModule {
