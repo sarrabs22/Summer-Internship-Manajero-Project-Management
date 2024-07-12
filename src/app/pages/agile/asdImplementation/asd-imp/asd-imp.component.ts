@@ -38,11 +38,12 @@ export class  AsdImpComponent{
 
   // User Management
   createUser() {
+
     this.userService.createUser(this.newUser).subscribe(response => {
       console.log('User created:', response);
     });
   }
-
+  
   getUser() {
     this.userService.getUserById(this.userId).subscribe(response => {
       this.user = response;
@@ -56,8 +57,9 @@ export class  AsdImpComponent{
       console.log('Project created:', response);
     });
   }
-
+  
   getProject() {
+
     this.projectService.getProjectById(this.projectId).subscribe(response => {
       this.project = response;
       console.log('Project fetched:', response);
@@ -70,7 +72,7 @@ export class  AsdImpComponent{
       console.log('Task created:', response);
     });
   }
-
+  
   getTask() {
     this.taskService.getTaskById(this.taskId).subscribe(response => {
       this.task = response;
@@ -84,12 +86,12 @@ export class  AsdImpComponent{
       console.log('Feedback created:', response);
     });
   }
-
+  
   getFeedback() {
     this.feedbackService.getFeedbackById(this.feedbackId).subscribe(response => {
       this.feedback = response;
       console.log('Feedback fetched:', response);
     });
-
   }
+  
 }
