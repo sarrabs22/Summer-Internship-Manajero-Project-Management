@@ -1,0 +1,40 @@
+.dashboard-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+
+  .section {
+    flex: 1;
+    margin: 0 10px;
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    mat-card {
+      margin-bottom: 20px;
+
+      mat-card-title {
+        font-size: 20px;
+      }
+
+      mat-card-content {
+        font-size: 16px;
+      }
+
+      mat-card-actions {
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    button {
+      margin-bottom: 20px;
+    }
+  }
+}
