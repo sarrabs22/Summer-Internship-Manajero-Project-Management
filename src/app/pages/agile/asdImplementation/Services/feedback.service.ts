@@ -22,4 +22,12 @@ export class FeedbackService {
   getFeedbackById(id: string): Observable<Feedback> {
     return this.http.get<Feedback>(`${this.apiUrl}/${id}`);
   }
+
+  updateFeedback(id: string, feedback: Feedback): Observable<Feedback> {
+    return this.http.put<Feedback>(`${this.apiUrl}/${id}`, feedback);
+  }
+
+  deleteFeedback(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }
