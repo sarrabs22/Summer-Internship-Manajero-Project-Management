@@ -85,7 +85,10 @@ import { SummaryComponent } from './agile/asd/summary/summary.component';
     ExhaustiveTutorialComponent,
     HowToImplementComponent,
     SummaryComponent,
+<<<<<<< HEAD
+=======
 
+>>>>>>> 82e140b7406979104d98c4d3db7af6655b3c80d0
   ],
 })
 export class PagesModule {}
