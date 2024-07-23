@@ -3,138 +3,121 @@
     <nb-stepper orientation="horizontal">
       <!-- Why Adaptive Software Development -->
       <nb-step label="Introduction ASD">
-        <div class="asd-container">
-          <h1><i class="fas fa-question-circle"></i> Why Adaptive Software Development?</h1>
-          <div class="grid">
-            <div class="text-section">
-              <p>
-                <strong>Origins:</strong> Adaptive Software Development (ASD) emerged in the mid-1990s as an innovative response to the rigidity and limitations of traditional methodologies like the Waterfall model. Developed by Jim Highsmith, ASD is rooted in collaboration, learning, and adaptation—cornerstones for thriving in dynamic environments.
-              </p>
-              <p>
-                <strong>Methodology:</strong> Unlike traditional methods that rely on upfront planning and linear project execution, ASD advocates for a flexible and iterative approach characterized by a cycle of speculation, collaboration, and learning. This flexibility helps teams quickly adapt to changing requirements, which is crucial in projects influenced by market and technological shifts.
-              </p>
-            </div>
-            <div class="text-section">
-              <p>
-                <strong>Impact:</strong> By integrating regular feedback loops and encouraging ongoing reassessment of project directions, ASD enables organizations to align software development more closely with user needs and current market conditions. It empowers teams to experiment, innovate, and learn from failures without the constraints of a fixed plan.
-              </p>
-            </div>
+        <div class="asd-container" *ngIf="introduction">
+          <h1 class="step-title"><i class="fas fa-question-circle"></i> Why Adaptive Software Development?</h1>
+          <div class="text-section">
+            <p><strong>Origins:</strong> {{ introduction.origins }}</p>
+            <p><strong>Methodology:</strong> {{ introduction.methodology }}</p>
+            <p><strong>Impact:</strong> {{ introduction.impact }}</p>
           </div>
           <div class="asd-process-flow">
             <div class="process-step">
               <h3><i class="fas fa-users"></i> Collaboration</h3>
               <ul>
-                <li>Requirement Gatherings</li>
-                <li>JAD (Joint Application Design)</li>
-                <li>Mini specs</li>
+                <li *ngFor="let item of introduction.collaboration">{{ item }}</li>
               </ul>
             </div>
             <div class="process-step">
               <h3><i class="fas fa-lightbulb"></i> Speculations</h3>
               <ul>
-                <li>Adaptive cycle planning</li>
-                <li>Uses mission statement</li>
+                <li *ngFor="let item of introduction.speculations">{{ item }}</li>
               </ul>
             </div>
             <div class="process-step">
               <h3><i class="fas fa-book-open"></i> Learning</h3>
               <ul>
-                <li>Components implemented/tested</li>
-                <li>Focus ensures ongoing feedback</li>
+                <li *ngFor="let item of introduction.learning">{{ item }}</li>
               </ul>
             </div>
           </div>
           <div class="image-container">
             <img src="assets/images/ASDLifeCycle.png" alt="ASD Lifecycle" class="img-fluid my-4">
           </div>
-        </div>
-
-        <div class="grid-container">
-          <div class="advantages">
-            <h3><i class="fa fa-thumbs-up"></i> Advantages of ASD</h3>
-            <ul>
-              <li><i class="fa fa-check-circle"></i> Flexibility in changing environments</li>
-              <li><i class="fa fa-check-circle"></i> Increased stakeholder engagement</li>
-              <li><i class="fa fa-check-circle"></i> Faster time-to-market</li>
-              <li><i class="fa fa-check-circle"></i> Promotes innovation</li>
-              <li><i class="fa fa-check-circle"></i> Improved risk management</li>
-            </ul>
+          <div class="grid-container">
+            <div class="advantages">
+              <h3><i class="fa fa-thumbs-up"></i> Advantages of ASD</h3>
+              <ul>
+                <li><i class="fa fa-check-circle"></i> Flexibility in changing environments</li>
+                <li><i class="fa fa-check-circle"></i> Increased stakeholder engagement</li>
+                <li><i class="fa fa-check-circle"></i> Faster time-to-market</li>
+                <li><i class="fa fa-check-circle"></i> Promotes innovation</li>
+                <li><i class="fa fa-check-circle"></i> Improved risk management</li>
+              </ul>
+            </div>
+            <div class="limitations">
+              <h3><i class="fa fa-exclamation-triangle"></i> Limitations of ASD</h3>
+              <ul>
+                <li><i class="fa fa-times-circle"></i> Dependence on team expertise</li>
+                <li><i class="fa fa-times-circle"></i> Potential for scope creep</li>
+                <li><i class="fa fa-times-circle"></i> Requires high commitment from all stakeholders</li>
+                <li><i class="fa fa-times-circle"></i> Difficulty in long-term planning</li>
+                <li><i class="fa fa-times-circle"></i> Challenging to scale</li>
+              </ul>
+            </div>
           </div>
-          <div class="limitations">
-            <h3><i class="fa fa-exclamation-triangle"></i> Limitations of ASD</h3>
-            <ul>
-              <li><i class="fa fa-times-circle"></i> Dependence on team expertise</li>
-              <li><i class="fa fa-times-circle"></i> Potential for scope creep</li>
-              <li><i class="fa fa-times-circle"></i> Requires high commitment from all stakeholders</li>
-              <li><i class="fa fa-times-circle"></i> Difficulty in long-term planning</li>
-              <li><i class="fa fa-times-circle"></i> Challenging to scale</li>
-            </ul>
+          <div class="button-group">
+            <button nbButton (click)="editIntroduction(introduction)">Edit</button>
+            <button nbButton (click)="deleteIntroduction(introduction.id)">Delete</button>
           </div>
         </div>
-
-        <button nbButton nbStepperPrevious disabled>Prev</button>
-        <button nbButton nbStepperNext>Next</button>
+        <div class="button-group">
+          <button nbButton (click)="addIntroduction()">Add New Introduction</button>
+          <button nbButton nbStepperNext>Next</button>
+        </div>
       </nb-step>
 
       <!-- What is Adaptive Software Development -->
       <nb-step label="Exhaustive Tutorial">
-        <h3>What is Adaptive Software Development?</h3>
-        <p>
-          ASD is a project management framework designed for complex systems where requirements evolve rapidly. It emphasizes collaboration, learning, and flexibility, utilizing iterative cycles of Speculate, Collaborate, and Learn.
-        </p>
-
-        <div class="card h-100 animate__fadeInUp">
-          <div class="card-header">
-            <h2 class="card-title"> </h2>
+        <div *ngIf="exhaustiveTutorial">
+          <h3 class="step-title">What is Adaptive Software Development?</h3>
+          <div class="quadrant">
+            <h4><i class="fas fa-question-circle"></i> Why</h4>
+            <p>{{ exhaustiveTutorial.why }}</p>
           </div>
-          <div class="card-body">
-            <div class="quadrant">
-              <h4><i class="fas fa-question-circle"></i> Why</h4>
-              <p>The need for flexibility and adaptability in software development has driven the adoption of methodologies like ASD, which help teams handle dynamic requirements and ensure the final product meets user expectations.</p>
-            </div>
-            <div class="quadrant">
-              <h4><i class="fas fa-cogs"></i> What</h4>
-              <p>ASD focuses on continuous adaptation and learning, with three main phases: Speculate, Collaborate, and Learn. These phases help manage uncertainty and drive the project towards successful outcomes.</p>
-            </div>
-            <div class="quadrant">
-              <h4><i class="fas fa-user-friends"></i> How</h4>
-              <p>Implementing ASD involves initial planning (Speculate), collaborative development (Collaborate), and iterative learning (Learn). Teams use practices like pair programming, code reviews, and daily stand-ups to ensure alignment and continuous improvement.</p>
-            </div>
-            <div class="quadrant">
-              <h4><i class="fas fa-tools"></i> What if</h4>
-              <p>ASD can be adapted to various environments and challenges, such as integrating with other agile methodologies like Scrum or Kanban. It can also be tailored to fit the specific needs of different projects or organizational structures.</p>
-            </div>
+          <div class="quadrant">
+            <h4><i class="fas fa-cogs"></i> What</h4>
+            <p>{{ exhaustiveTutorial.what }}</p>
+          </div>
+          <div class="quadrant">
+            <h4><i class="fas fa-user-friends"></i> How</h4>
+            <p>{{ exhaustiveTutorial.how }}</p>
+          </div>
+          <div class="quadrant">
+            <h4><i class="fas fa-tools"></i> What if</h4>
+            <p>{{ exhaustiveTutorial.whatIf }}</p>
+          </div>
+          <div class="button-group">
+            <button nbButton (click)="editExhaustiveTutorial(exhaustiveTutorial)">Edit</button>
+            <button nbButton (click)="deleteExhaustiveTutorial(exhaustiveTutorial.id)">Delete</button>
           </div>
         </div>
-
-        <button nbButton nbStepperPrevious>Prev</button>
-        <button nbButton nbStepperNext>Next</button>
+        <div class="button-group">
+          <button nbButton (click)="addExhaustiveTutorial()">Add New Tutorial</button>
+          <button nbButton nbStepperPrevious>Prev</button>
+          <button nbButton nbStepperNext>Next</button>
+        </div>
       </nb-step>
 
       <!-- How to Implement ASD -->
       <nb-step label="How to Implement ASD">
-        <div class="application-dashboard">
-          <h3>How to Implement ASD?</h3>
-          <p>
-            Implementing ASD involves the use of iterative development cycles, constant feedback loops, and proactive change management. We'll explore case studies and practical tools to understand implementation.
-          </p>
-          <h4><i class="fas fa-tachometer-alt"></i> Application Dashboard</h4>
-          <p>The ASD methodology employs a dynamic application dashboard with several key functionalities:</p>
+
+        <div class="application-dashboard" *ngIf="howToImplement">
+          <h3 class="step-title">How to Implement ASD?</h3>
           <div class="dashboard-grid">
             <div class="dashboard-item">
               <i class="fas fa-sitemap"></i>
               <h5>Step Management</h5>
-              <p>Organizes and tracks different phases of software development.</p>
+              <p>{{ howToImplement.stepManagement }}</p>
             </div>
             <div class="dashboard-item">
               <i class="fas fa-calendar-alt"></i>
               <h5>Iteration Planning</h5>
-              <p>Supports the planning and tracking of iterative development cycles.</p>
+              <p>{{ howToImplement.iterationPlanning }}</p>
             </div>
             <div class="dashboard-item">
               <i class="fas fa-edit"></i>
               <h5>Change Management Forms</h5>
-              <p>Provides forms for handling changes effectively, ensuring adaptability.</p>
+              <p>{{ howToImplement.changeManagementForms }}</p>
             </div>
             <div class="dashboard-item">
               <i class="fas fa-chart-line"></i>
@@ -142,62 +125,50 @@
               <p>Includes tools for ongoing assessment of the project's progress and success.</p>
             </div>
           </div>
+          <div class="button-group">
+            <button nbButton (click)="editHowToImplement(howToImplement)">Edit</button>
+            <button nbButton (click)="deleteHowToImplement(howToImplement.id)">Delete</button>
+          </div>
         </div>
-
-        <button nbButton nbStepperPrevious>Prev</button>
-        <button nbButton nbStepperNext>Next</button>
+        <div class="button-group">
+          <button nbButton (click)="addHowToImplement()">Add New Implementation Step</button>
+          <button nbButton nbStepperPrevious>Prev</button>
+          <button nbButton nbStepperNext>Next</button>
+        </div>
       </nb-step>
 
       <!-- Summary -->
       <nb-step label="Summary">
-        <h3>Summary of Adaptive Software Development (ASD)</h3>
-        <p>
-          Below is a summary of the key aspects of ASD we've discussed:
-        </p>
-
-        <!-- Accordion for summarizing previous discussions -->
-        <div class="accordion-container">
+        <h3 class="step-title">Summary of Adaptive Software Development (ASD)</h3>
+        <div class="accordion-container" *ngIf="summary">
           <nb-accordion multi>
             <nb-accordion-item>
-              <nb-accordion-item-header>
-                Introduction to ASD
-              </nb-accordion-item-header>
-              <nb-accordion-item-body>
-                Adaptive Software Development (ASD) emerged as a response to the rigidity of traditional methods like the Waterfall model. It focuses on flexibility, collaboration, and learning to quickly adapt to changes.
-              </nb-accordion-item-body>
+              <nb-accordion-item-header>Introduction to ASD</nb-accordion-item-header>
+              <nb-accordion-item-body>{{ summary.introduction }}</nb-accordion-item-body>
             </nb-accordion-item>
-
             <nb-accordion-item>
-              <nb-accordion-item-header>
-                Core Principles of ASD
-              </nb-accordion-item-header>
-              <nb-accordion-item-body>
-                ASD operates on a cycle of Speculate, Collaborate, and Learn, encouraging continuous adaptation and iterative learning to align development with user needs and market changes.
-              </nb-accordion-item-body>
+              <nb-accordion-item-header>Core Principles of ASD</nb-accordion-item-header>
+              <nb-accordion-item-body>{{ summary.corePrinciples }}</nb-accordion-item-body>
             </nb-accordion-item>
-
             <nb-accordion-item>
-              <nb-accordion-item-header>
-                Key ASD Processes
-              </nb-accordion-item-header>
-              <nb-accordion-item-body>
-                The process includes Step Management, Iteration Planning, and Continuous Evaluation, supported by practical tools such as Change Management Forms and adaptive planning techniques.
-              </nb-accordion-item-body>
+              <nb-accordion-item-header>Key ASD Processes</nb-accordion-item-header>
+              <nb-accordion-item-body>{{ summary.keyProcesses }}</nb-accordion-item-body>
             </nb-accordion-item>
-
             <nb-accordion-item>
-              <nb-accordion-item-header>
-                Advantages and Limitations
-              </nb-accordion-item-header>
-              <nb-accordion-item-body>
-                ASD offers enhanced flexibility and faster time-to-market but requires high commitment and can be challenging to scale, highlighting the importance of skilled team dynamics and strong leadership.
-              </nb-accordion-item-body>
+              <nb-accordion-item-header>Advantages and Limitations</nb-accordion-item-header>
+              <nb-accordion-item-body>{{ summary.advantagesLimitations }}</nb-accordion-item-body>
             </nb-accordion-item>
           </nb-accordion>
+          <div class="button-group">
+            <button nbButton (click)="editSummary(summary)">Edit</button>
+            <button nbButton (click)="deleteSummary(summary.id)">Delete</button>
+          </div>
         </div>
-
-        <button nbButton nbStepperPrevious>Prev</button>
-        <button nbButton routerLink="/agile/asd-imp">Use Method</button>
+        <div class="button-group">
+          <button nbButton (click)="addSummary()">Add New Summary</button>
+          <button nbButton nbStepperPrevious>Prev</button>
+          <button nbButton (click)="useMethod()">Use Method</button>
+        </div>
       </nb-step>
     </nb-stepper>
   </nb-card-body>

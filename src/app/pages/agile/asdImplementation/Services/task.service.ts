@@ -22,4 +22,13 @@ export class TaskService {
   getTaskById(id: string): Observable<Task> {
     return this.http.get<Task>(`${this.apiUrl}/${id}`);
   }
+
+  updateTask(id: string, feedback: Task): Observable<Task> {
+    return this.http.put<Task>(`${this.apiUrl}/${id}`, feedback);
+  }
+
+  deleteTask(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
 }

@@ -60,6 +60,42 @@ export class DashboardComponent implements OnInit {
     // Logic to view feedback details
   }
 
+  confirmDeleteProject(project): void {
+    if (confirm(`Are you sure you want to delete the project "${project.name}"?`)) {
+      this.deleteProject(project);
+    }
+  }
+
+  confirmDeleteTask(task): void {
+    if (confirm(`Are you sure you want to delete the task "${task.name}"?`)) {
+      this.deleteTask(task);
+    }
+  }
+
+  confirmDeleteFeedback(feedback): void {
+    if (confirm(`Are you sure you want to delete this feedback?`)) {
+      this.deleteFeedback(feedback);
+    }
+  }
+
+  deleteProject(project): void {
+    this.projectService.deleteProject(project.id).subscribe(() => {
+      this.loadProjects();
+    });
+  }
+
+  deleteTask(task): void {
+    this.taskService.deleteTask(task.id).subscribe(() => {
+      this.loadTasks();
+    });
+  }
+
+  deleteFeedback(feedback): void {
+    this.feedbackService.deleteFeedback(feedback.id).subscribe(() => {
+      this.loadFeedbacks();
+    });
+  }
+
   openCreateProjectDialog(): void {
     const dialogRef = this.dialog.open(CreateProjectDialogComponent);
 

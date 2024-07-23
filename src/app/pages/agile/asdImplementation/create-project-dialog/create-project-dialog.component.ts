@@ -1,24 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ProjectService } from '../Services/project.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-project-dialog',
   templateUrl: './create-project-dialog.component.html',
   styleUrls: ['./create-project-dialog.component.css']
 })
-export class CreateProjectDialogComponent {
-  newProject: any = {};
+export class CreateProjectDialogComponent implements OnInit {
+  projectForm: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<CreateProjectDialogComponent>,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private formBuilder: FormBuilder
   ) {}
 
-  onCreate(): void {
-    this.projectService.createProject(this.newProject).subscribe(response => {
-      this.dialogRef.close(response);
+  ngOnInit(): void {
+    this.projectForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required]
     });
+  }
+
+  onCreate(): void {
+    if (this.projectForm.valid) {
+      const newProject = this.projectForm.value;
+      this.projectService.createProject(newProject).subscribe(response => {
+        this.dialogRef.close(response);
+      });
+    }
   }
 
   onCancel(): void {

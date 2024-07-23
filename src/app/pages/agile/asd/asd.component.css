@@ -426,3 +426,69 @@ button:hover {
 
 
 
+.step-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.text-section p,
+.process-step h3,
+.quadrant h4,
+.dashboard-item h5 {
+  margin-bottom: 0.5rem;
+}
+
+.grid,
+.grid-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.grid-container {
+  flex-direction: column;
+}
+
+.asd-process-flow,
+.dashboard-grid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.process-step,
+.dashboard-item {
+  flex: 1 1 calc(50% - 1rem);
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.advantages,
+.limitations {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+.accordion-container {
+  margin-top: 1rem;
+}
+
+.button-group {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.button-group button {
+  margin: 0;
+}

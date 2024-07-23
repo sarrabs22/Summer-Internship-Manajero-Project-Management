@@ -6,6 +6,7 @@ import { UserService } from '../Services/user.service';
 import { Task } from '../models/Task';
 import { Project } from '../models/Project';
 import { User } from '../models/User';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-task-dialog',
@@ -13,20 +14,29 @@ import { User } from '../models/User';
   styleUrls: ['./create-task-dialog.component.scss']
 })
 export class CreateTaskDialogComponent implements OnInit {
-  newTask: Task = new Task();
+  taskForm: FormGroup;
   projects: Project[] = [];
   users: User[] = [];
-  statuses: string[] = ['To Do', 'In Progress', 'Done']; // Define the possible statuses
+  statuses: string[] = ['To Do', 'In Progress', 'Done'];
 
   constructor(
     public dialogRef: MatDialogRef<CreateTaskDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private taskService: TaskService,
     private projectService: ProjectService,
-    private userService: UserService
+    private userService: UserService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
+    this.taskForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      project: ['', Validators.required],
+      assignedTo: ['', Validators.required],
+      status: ['', Validators.required]
+    });
+
     this.projectService.getAllProjects().subscribe((projects) => {
       this.projects = projects;
     });
@@ -41,13 +51,16 @@ export class CreateTaskDialogComponent implements OnInit {
   }
 
   onCreate(): void {
-    this.taskService.createTask(this.newTask).subscribe(
-      (response) => {
-        this.dialogRef.close(response);
-      },
-      (error) => {
-        console.error('Error creating task:', error);
-      }
-    );
+    if (this.taskForm.valid) {
+      const newTask = this.taskForm.value;
+      this.taskService.createTask(newTask).subscribe(
+        (response) => {
+          this.dialogRef.close(response);
+        },
+        (error) => {
+          console.error('Error creating task:', error);
+        }
+      );
+    }
   }
 }

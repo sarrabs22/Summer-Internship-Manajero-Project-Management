@@ -33,8 +33,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { FormsModule } from '@angular/forms'; // Import Angular FormsModule
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import Angular FormsModule
 import { MatSelectModule } from '@angular/material/select';
+import { CreateASDStepComponent } from './agile/asd/create-asdstep/create-asdstep.component';
+import { IntroductionComponent } from './agile/asd/introduction/introduction.component';
+import { ExhaustiveTutorialComponent } from './agile/asd/exhaustive-tutorial/exhaustive-tutorial.component';
+import { HowToImplementComponent } from './agile/asd/how-to-implement/how-to-implement.component';
+import { SummaryComponent } from './agile/asd/summary/summary.component';
 
 @NgModule({
   imports: [
@@ -59,6 +64,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatListModule,
     FormsModule,
     MatSelectModule,
+    ReactiveFormsModule
+
   
 
     
@@ -73,6 +80,11 @@ import { MatSelectModule } from '@angular/material/select';
     CreateProjectDialogComponent,
     CreateTaskDialogComponent,
     CreateFeedbackDialogComponent,
+    CreateASDStepComponent,
+    IntroductionComponent,
+    ExhaustiveTutorialComponent,
+    HowToImplementComponent,
+    SummaryComponent,
 
   ],
 })
