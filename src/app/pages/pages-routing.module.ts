@@ -82,10 +82,12 @@ const routes: Routes = [{
       component: AsdImpComponent,
     },
     {
+
       path: 'agile/dashASD', 
       component: DashboardComponent,
     },
     {
+
       path: '',
       redirectTo: 'dashboard',
       pathMatch: 'full',
