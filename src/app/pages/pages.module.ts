@@ -18,7 +18,7 @@ import { CreateFeedbackDialogComponent } from './agile/asdImplementation/create-
 
 import { NbCardModule, NbStepperModule,NbAccordionModule } from '@nebular/theme';
 import { AsdImpComponent } from './agile/asdImplementation/asd-imp/asd-imp.component';
-import { FormsModule } from '@angular/forms';  // Import Angular FormsModule
+
 import { NbThemeModule, NbLayoutModule, NbListModule, NbInputModule, NbButtonModule, NbSelectModule } from '@nebular/theme';
 
 
@@ -85,10 +85,7 @@ import { SummaryComponent } from './agile/asd/summary/summary.component';
     ExhaustiveTutorialComponent,
     HowToImplementComponent,
     SummaryComponent,
-<<<<<<< HEAD
-=======
 
->>>>>>> 82e140b7406979104d98c4d3db7af6655b3c80d0
   ],
 })
 export class PagesModule {}
