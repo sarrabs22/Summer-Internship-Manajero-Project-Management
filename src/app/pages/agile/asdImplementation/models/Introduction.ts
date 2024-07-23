@@ -7,5 +7,8 @@ export interface Introduction {
   speculations: string[];
   learning: string[];
 
+  image?: string; 
+
+
   }
   

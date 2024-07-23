@@ -48,4 +48,5 @@ export class SummaryComponent implements OnInit {
   close(): void {
     this.dialogRef.close();
   }
+
 }

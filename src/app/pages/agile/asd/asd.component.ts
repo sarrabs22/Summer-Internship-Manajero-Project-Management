@@ -13,6 +13,12 @@ import { ExhaustiveTutorialComponent } from './exhaustive-tutorial/exhaustive-tu
 import { HowToImplementComponent } from './how-to-implement/how-to-implement.component';
 import { SummaryComponent } from './summary/summary.component';
 
+import { Router } from '@angular/router';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+
+
+
+
 @Component({
   selector: 'app-asd',
   templateUrl: './asd.component.html',
@@ -29,7 +35,10 @@ export class AsdComponent implements OnInit {
     private exhaustiveTutorialService: ExhaustiveTutorialService,
     private howToImplementService: HowToImplementService,
     private summaryService: SummaryService,
-    public dialog: MatDialog
+
+    public dialog: MatDialog,
+    private router: Router
+
   ) { }
 
   ngOnInit() {
@@ -38,6 +47,7 @@ export class AsdComponent implements OnInit {
     this.loadHowToImplement();
     this.loadSummary();
   }
+
 
   loadIntroduction() {
     this.introductionService.getIntroductions().subscribe(data => {
@@ -71,6 +81,7 @@ export class AsdComponent implements OnInit {
     this.summaryService.getSummaries().subscribe(data => {
       this.summary = data[0]; // assuming there's only one summary
     });
+
   }
 
   addIntroduction() {
@@ -195,5 +206,9 @@ export class AsdComponent implements OnInit {
 
   useMethod() {
     // logic for using the method
+
   }
+
+
+
 }
