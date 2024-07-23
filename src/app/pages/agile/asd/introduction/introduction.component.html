@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>{{ data?.id ? 'Edit' : 'Add' }} Introduction</h1>
+<div mat-dialog-content>
+  <form [formGroup]="introductionForm">
+    <mat-form-field>
+      <mat-label>Origins</mat-label>
+      <input matInput formControlName="origins">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Methodology</mat-label>
+      <input matInput formControlName="methodology">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Impact</mat-label>
+      <input matInput formControlName="impact">
+    </mat-form-field>
+    <div formArrayName="collaboration">
+        <h3>Collaboration</h3>
+        <div *ngFor="let item of collaboration.controls; let i = index">
+          <mat-form-field>
+            <input matInput [formControlName]="i" placeholder="Collaboration item">
+            <button mat-button color="warn" (click)="removeCollaborationItem(i)">Remove</button>
+          </mat-form-field>
+        </div>
+        <button mat-button color="primary" (click)="addCollaborationItem()">Add Collaboration</button>
+      </div>
+  
+      <div formArrayName="speculations">
+        <h3>Speculations</h3>
+        <div *ngFor="let item of speculations.controls; let i = index">
+          <mat-form-field>
+            <input matInput [formControlName]="i" placeholder="Speculations item">
+            <button mat-button color="warn" (click)="removeSpeculationItem(i)">Remove</button>
+          </mat-form-field>
+        </div>
+        <button mat-button color="primary" (click)="addSpeculationItem()">Add Speculations</button>
+      </div>
+  
+      <div formArrayName="learning">
+        <h3>Learning</h3>
+        <div *ngFor="let item of learning.controls; let i = index">
+          <mat-form-field>
+            <input matInput [formControlName]="i" placeholder="Learning item">
+            <button mat-button color="warn" (click)="removeLearningItem(i)">Remove</button>
+          </mat-form-field>
+        </div>
+        <button mat-button color="primary" (click)="addLearningItem()">Add Learning</button>
+      </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-button (click)="save()">Save</button>
+</div>

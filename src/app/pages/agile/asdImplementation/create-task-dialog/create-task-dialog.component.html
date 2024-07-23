@@ -1,34 +1,35 @@
 <h1 mat-dialog-title>Create Task</h1>
 <div mat-dialog-content>
-  <mat-form-field>
-    <input matInput placeholder="Name" [(ngModel)]="newTask.name">
-  </mat-form-field>
-  <mat-form-field>
-    <textarea matInput placeholder="Description" [(ngModel)]="newTask.description"></textarea>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder="Project" [(ngModel)]="newTask.project">
-      <mat-option *ngFor="let project of projects" [value]="project">
-        {{ project.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder="Assigned To" [(ngModel)]="newTask.assignedTo">
-      <mat-option *ngFor="let user of users" [value]="user">
-        {{ user.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder="Status" [(ngModel)]="newTask.status">
-      <mat-option *ngFor="let status of statuses" [value]="status">
-        {{ status }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <form [formGroup]="taskForm">
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name" required>
+      <mat-error *ngIf="taskForm.get('name').hasError('required')">Name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput placeholder="Description" formControlName="description" required></textarea>
+      <mat-error *ngIf="taskForm.get('description').hasError('required')">Description is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Project" formControlName="project" required>
+        <mat-option *ngFor="let project of projects" [value]="project">{{ project.name }}</mat-option>
+        <mat-error *ngIf="taskForm.get('project').hasError('required')">Project is required</mat-error>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Assigned To" formControlName="assignedTo" required>
+        <mat-option *ngFor="let user of users" [value]="user">{{ user.name }}</mat-option>
+        <mat-error *ngIf="taskForm.get('assignedTo').hasError('required')">Assigned To is required</mat-error>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Status" formControlName="status" required>
+        <mat-option *ngFor="let status of statuses" [value]="status">{{ status }}</mat-option>
+        <mat-error *ngIf="taskForm.get('status').hasError('required')">Status is required</mat-error>
+      </mat-select>
+    </mat-form-field>
+  </form>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="onCreate()">Create</button>
+  <button mat-raised-button color="primary" (click)="onCreate()" [disabled]="taskForm.invalid">Create</button>
 </div>
