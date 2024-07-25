@@ -6,7 +6,9 @@ export interface Introduction {
     collaboration: string[];
   speculations: string[];
   learning: string[];
+
   image?: string; 
+
 
   }
   

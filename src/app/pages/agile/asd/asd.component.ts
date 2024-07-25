@@ -12,7 +12,9 @@ import { IntroductionComponent } from './introduction/introduction.component';
 import { ExhaustiveTutorialComponent } from './exhaustive-tutorial/exhaustive-tutorial.component';
 import { HowToImplementComponent } from './how-to-implement/how-to-implement.component';
 import { SummaryComponent } from './summary/summary.component';
+
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-asd',
@@ -30,8 +32,10 @@ export class AsdComponent implements OnInit {
     private exhaustiveTutorialService: ExhaustiveTutorialService,
     private howToImplementService: HowToImplementService,
     private summaryService: SummaryService,
+
     public dialog: MatDialog,
     private router: Router
+
   ) { }
 
   ngOnInit() {
@@ -73,6 +77,7 @@ export class AsdComponent implements OnInit {
     this.summaryService.getSummaries().subscribe(data => {
       this.summary = data[0]; // assuming there's only one summary
     });
+
   }
 
   addIntroduction() {
@@ -100,11 +105,9 @@ export class AsdComponent implements OnInit {
   }
 
   deleteIntroduction(id: string) {
-    if (confirm('Are you sure you want to delete this introduction?')) {
-      this.introductionService.deleteIntroduction(id).subscribe(() => {
-        this.loadIntroduction();
-      });
-    }
+    this.introductionService.deleteIntroduction(id).subscribe(() => {
+      this.loadIntroduction();
+    });
   }
 
   addExhaustiveTutorial() {
@@ -132,11 +135,9 @@ export class AsdComponent implements OnInit {
   }
 
   deleteExhaustiveTutorial(id: string) {
-    if (confirm('Are you sure you want to delete this exhaustive tutorial?')) {
-      this.exhaustiveTutorialService.deleteExhaustiveTutorial(id).subscribe(() => {
-        this.loadExhaustiveTutorial();
-      });
-    }
+    this.exhaustiveTutorialService.deleteExhaustiveTutorial(id).subscribe(() => {
+      this.loadExhaustiveTutorial();
+    });
   }
 
   addHowToImplement() {
@@ -164,11 +165,9 @@ export class AsdComponent implements OnInit {
   }
 
   deleteHowToImplement(id: string) {
-    if (confirm('Are you sure you want to delete this implementation step?')) {
-      this.howToImplementService.deleteHowToImplement(id).subscribe(() => {
-        this.loadHowToImplement();
-      });
-    }
+    this.howToImplementService.deleteHowToImplement(id).subscribe(() => {
+      this.loadHowToImplement();
+    });
   }
 
   addSummary() {
@@ -196,14 +195,14 @@ export class AsdComponent implements OnInit {
   }
 
   deleteSummary(id: string) {
-    if (confirm('Are you sure you want to delete this summary?')) {
-      this.summaryService.deleteSummary(id).subscribe(() => {
-        this.loadSummary();
-      });
-    }
+    this.summaryService.deleteSummary(id).subscribe(() => {
+      this.loadSummary();
+    });
   }
 
   useMethod() {
-    this.router.navigate(['/pages/agile/dashASD']);
+    // logic for using the method
+
   }
 }
+
