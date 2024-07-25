@@ -13,9 +13,6 @@ import { ExhaustiveTutorialComponent } from './exhaustive-tutorial/exhaustive-tu
 import { HowToImplementComponent } from './how-to-implement/how-to-implement.component';
 import { SummaryComponent } from './summary/summary.component';
 import { Router } from '@angular/router';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-
-
 
 @Component({
   selector: 'app-asd',
@@ -43,7 +40,6 @@ export class AsdComponent implements OnInit {
     this.loadHowToImplement();
     this.loadSummary();
   }
-
 
   loadIntroduction() {
     this.introductionService.getIntroductions().subscribe(data => {
@@ -165,7 +161,7 @@ export class AsdComponent implements OnInit {
         this.loadHowToImplement();
       }
     });
-
+  }
 
   deleteHowToImplement(id: string) {
     if (confirm('Are you sure you want to delete this implementation step?')) {
@@ -210,5 +206,4 @@ export class AsdComponent implements OnInit {
   useMethod() {
     this.router.navigate(['/pages/agile/dashASD']);
   }
-
 }
