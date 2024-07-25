@@ -14,9 +14,6 @@ import { HowToImplementComponent } from './how-to-implement/how-to-implement.com
 import { SummaryComponent } from './summary/summary.component';
 
 import { Router } from '@angular/router';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-
-
 
 
 @Component({
@@ -47,7 +44,6 @@ export class AsdComponent implements OnInit {
     this.loadHowToImplement();
     this.loadSummary();
   }
-
 
   loadIntroduction() {
     this.introductionService.getIntroductions().subscribe(data => {
@@ -208,7 +204,5 @@ export class AsdComponent implements OnInit {
     // logic for using the method
 
   }
-
-
-
 }
+
