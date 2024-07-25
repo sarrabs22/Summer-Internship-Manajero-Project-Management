@@ -95,6 +95,7 @@
     <mat-card *ngFor="let task of tasks" class="dashboard-card">
       <mat-card-title>{{ task.name }}</mat-card-title>
       <mat-card-content>{{ task.description }}</mat-card-content>
+      <mat-card-content>{{ task.status }}</mat-card-content>
       <mat-card-actions>
         <button mat-button (click)="viewTaskDetails(task)">View Details</button>
         <button mat-button color="warn" (click)="confirmDeleteTask(task)">Delete</button>
