@@ -27,9 +27,14 @@ export class CreateProjectDialogComponent implements OnInit {
   onCreate(): void {
     if (this.projectForm.valid) {
       const newProject = this.projectForm.value;
-      this.projectService.createProject(newProject).subscribe(response => {
-        this.dialogRef.close(response);
-      });
+      this.projectService.createProject(newProject).subscribe(
+        (response) => {
+          this.dialogRef.close(response);
+        },
+        (error) => {
+          console.error('Error creating project', error);
+        }
+      );
     }
   }
 

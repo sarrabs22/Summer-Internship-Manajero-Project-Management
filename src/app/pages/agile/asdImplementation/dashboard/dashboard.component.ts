@@ -6,6 +6,10 @@ import { FeedbackService } from '../Services/feedback.service';
 import { CreateProjectDialogComponent } from '../create-project-dialog/create-project-dialog.component';
 import { CreateTaskDialogComponent } from '../create-task-dialog/create-task-dialog.component';
 import { CreateFeedbackDialogComponent } from '../create-feedback-dialog/create-feedback-dialog.component';
+import { Project } from '../models/Project';
+import { Feedback } from '../models/Feedback';
+import { Task } from '../models/Task';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -13,9 +17,9 @@ import { CreateFeedbackDialogComponent } from '../create-feedback-dialog/create-
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  projects = [];
-  tasks = [];
-  feedbacks = [];
+  projects: Project[] = [];
+  tasks: Task[] = [];
+  feedbacks: Feedback[] = [];
 
   constructor(
     private projectService: ProjectService,
@@ -31,66 +35,84 @@ export class DashboardComponent implements OnInit {
   }
 
   loadProjects(): void {
-    this.projectService.getAllProjects().subscribe(data => {
-      this.projects = data;
-    });
+    this.projectService.getAllProjects().subscribe(
+      (data) => {
+        this.projects = data || []; // Ensure an empty array if null
+      },
+      (error) => {
+        console.error('Error loading projects', error);
+        this.projects = []; // Fallback to empty array
+      }
+    );
   }
 
   loadTasks(): void {
-    this.taskService.getAllTasks().subscribe(data => {
-      this.tasks = data;
-    });
+    this.taskService.getAllTasks().subscribe(
+      (data) => {
+        this.tasks = data || []; // Ensure an empty array if null
+      },
+      (error) => {
+        console.error('Error loading tasks', error);
+        this.tasks = []; // Fallback to empty array
+      }
+    );
   }
 
   loadFeedbacks(): void {
-    this.feedbackService.getAllFeedbacks().subscribe(data => {
-      this.feedbacks = data;
-    });
+    this.feedbackService.getAllFeedbacks().subscribe(
+      (data) => {
+        this.feedbacks = data || []; // Ensure an empty array if null
+      },
+      (error) => {
+        console.error('Error loading feedbacks', error);
+        this.feedbacks = []; // Fallback to empty array
+      }
+    );
   }
 
-  viewProjectDetails(project): void {
+  viewProjectDetails(project: Project): void {
     // Logic to view project details
   }
 
-  viewTaskDetails(task): void {
+  viewTaskDetails(task: Task): void {
     // Logic to view task details
   }
 
-  viewFeedbackDetails(feedback): void {
+  viewFeedbackDetails(feedback: Feedback): void {
     // Logic to view feedback details
   }
 
-  confirmDeleteProject(project): void {
+  confirmDeleteProject(project: Project): void {
     if (confirm(`Are you sure you want to delete the project "${project.name}"?`)) {
       this.deleteProject(project);
     }
   }
 
-  confirmDeleteTask(task): void {
+  confirmDeleteTask(task: Task): void {
     if (confirm(`Are you sure you want to delete the task "${task.name}"?`)) {
       this.deleteTask(task);
     }
   }
 
-  confirmDeleteFeedback(feedback): void {
+  confirmDeleteFeedback(feedback: Feedback): void {
     if (confirm(`Are you sure you want to delete this feedback?`)) {
       this.deleteFeedback(feedback);
     }
   }
 
-  deleteProject(project): void {
+  deleteProject(project: Project): void {
     this.projectService.deleteProject(project.id).subscribe(() => {
       this.loadProjects();
     });
   }
 
-  deleteTask(task): void {
+  deleteTask(task: Task): void {
     this.taskService.deleteTask(task.id).subscribe(() => {
       this.loadTasks();
     });
   }
 
-  deleteFeedback(feedback): void {
+  deleteFeedback(feedback: Feedback): void {
     this.feedbackService.deleteFeedback(feedback.id).subscribe(() => {
       this.loadFeedbacks();
     });

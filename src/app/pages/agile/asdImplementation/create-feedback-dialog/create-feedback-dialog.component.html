@@ -1,27 +1,44 @@
 <h1 mat-dialog-title>Create Feedback</h1>
 <div mat-dialog-content>
-  <mat-form-field>
-    <input matInput placeholder="Comment" [(ngModel)]="newFeedback.comment">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Rating" type="number" [(ngModel)]="newFeedback.rating">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder="Given By" [(ngModel)]="newFeedback.givenBy">
-      <mat-option *ngFor="let user of users" [value]="user">
-        {{ user.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder="Task" [(ngModel)]="newFeedback.task">
-      <mat-option *ngFor="let task of tasks" [value]="task">
-        {{ task.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <form [formGroup]="feedbackForm">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Comment</mat-label>
+      <input matInput formControlName="comment" required>
+      <mat-error *ngIf="feedbackForm.get('comment').hasError('required') && feedbackForm.get('comment').touched">
+        Comment is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Rating</mat-label>
+      <input matInput type="number" formControlName="rating" required min="1" max="5">
+      <mat-error *ngIf="feedbackForm.get('rating').hasError('required') && feedbackForm.get('rating').touched">
+        Rating is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Given By</mat-label>
+      <mat-select formControlName="givenBy" required>
+        <mat-option *ngFor="let user of users" [value]="user">{{ user.name }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="feedbackForm.get('givenBy').hasError('required') && feedbackForm.get('givenBy').touched">
+        User is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Task</mat-label>
+      <mat-select formControlName="task" required>
+        <mat-option *ngFor="let task of tasks" [value]="task">{{ task.name }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="feedbackForm.get('task').hasError('required') && feedbackForm.get('task').touched">
+        Task is required
+      </mat-error>
+    </mat-form-field>
+  </form>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="onCreate()">Create</button>
+  <button mat-raised-button color="primary" (click)="onCreate()" [disabled]="feedbackForm.invalid">Create</button>
 </div>

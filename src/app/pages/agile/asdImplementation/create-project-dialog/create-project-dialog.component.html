@@ -1,13 +1,20 @@
 <h1 mat-dialog-title>Create Project</h1>
 <div mat-dialog-content>
   <form [formGroup]="projectForm">
-    <mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
       <input matInput placeholder="Name" formControlName="name" required>
-      <mat-error *ngIf="projectForm.get('name').hasError('required')">Name is required</mat-error>
+      <mat-error *ngIf="projectForm.get('name').hasError('required') && projectForm.get('name').touched">
+        Name is required
+      </mat-error>
     </mat-form-field>
-    <mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
       <textarea matInput placeholder="Description" formControlName="description" required></textarea>
-      <mat-error *ngIf="projectForm.get('description').hasError('required')">Description is required</mat-error>
+      <mat-error *ngIf="projectForm.get('description').hasError('required') && projectForm.get('description').touched">
+        Description is required
+      </mat-error>
     </mat-form-field>
   </form>
 </div>

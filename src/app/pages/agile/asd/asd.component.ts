@@ -201,8 +201,8 @@ export class AsdComponent implements OnInit {
   }
 
   useMethod() {
-    // logic for using the method
-
+    this.router.navigate(['/pages/agile/dashASD']);
   }
+  
 }
 
