@@ -6,6 +6,7 @@ import { UserService } from '../Services/user.service';
 import { Feedback } from '../models/Feedback';
 import { Task } from '../models/Task';
 import { User } from '../models/User';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-feedback-dialog',
@@ -13,7 +14,7 @@ import { User } from '../models/User';
   styleUrls: ['./create-feedback-dialog.component.scss']
 })
 export class CreateFeedbackDialogComponent implements OnInit {
-  newFeedback: Feedback = new Feedback();
+  feedbackForm: FormGroup;
   tasks: Task[] = [];
   users: User[] = [];
 
@@ -22,10 +23,18 @@ export class CreateFeedbackDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private feedbackService: FeedbackService,
     private taskService: TaskService,
-    private userService: UserService
+    private userService: UserService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
+    this.feedbackForm = this.formBuilder.group({
+      comment: ['', Validators.required],
+      rating: ['', [Validators.required, Validators.min(1), Validators.max(5)]],
+      givenBy: ['', Validators.required],
+      task: ['', Validators.required]
+    });
+
     this.taskService.getAllTasks().subscribe((tasks) => {
       this.tasks = tasks;
     });
@@ -40,13 +49,16 @@ export class CreateFeedbackDialogComponent implements OnInit {
   }
 
   onCreate(): void {
-    this.feedbackService.createFeedback(this.newFeedback).subscribe(
-      (response) => {
-        this.dialogRef.close(response);
-      },
-      (error) => {
-        console.error('Error creating feedback:', error);
-      }
-    );
+    if (this.feedbackForm.valid) {
+      const newFeedback = this.feedbackForm.value;
+      this.feedbackService.createFeedback(newFeedback).subscribe(
+        (response) => {
+          this.dialogRef.close(response);
+        },
+        (error) => {
+          console.error('Error creating feedback:', error);
+        }
+      );
+    }
   }
 }
