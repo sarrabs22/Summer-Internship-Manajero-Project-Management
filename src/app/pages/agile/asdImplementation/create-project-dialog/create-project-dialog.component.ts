@@ -10,6 +10,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class CreateProjectDialogComponent implements OnInit {
   projectForm: FormGroup;
+  priorities: string[] = ['Low', 'Medium', 'High'];
+  statuses: string[] = ['Not Started', 'In Progress', 'Completed'];
 
   constructor(
     public dialogRef: MatDialogRef<CreateProjectDialogComponent>,
@@ -20,7 +22,11 @@ export class CreateProjectDialogComponent implements OnInit {
   ngOnInit(): void {
     this.projectForm = this.formBuilder.group({
       name: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
+      priority: ['', Validators.required],
+      status: ['', Validators.required]
     });
   }
 

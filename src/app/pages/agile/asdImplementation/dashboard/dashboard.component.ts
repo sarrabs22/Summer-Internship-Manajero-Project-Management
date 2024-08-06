@@ -9,6 +9,8 @@ import { CreateFeedbackDialogComponent } from '../create-feedback-dialog/create-
 import { Project } from '../models/Project';
 import { Feedback } from '../models/Feedback';
 import { Task } from '../models/Task';
+import { ProjectDetailsDialogComponent } from '../project-details-dialog/project-details-dialog.component';
+
 
 
 @Component({
@@ -20,6 +22,9 @@ export class DashboardComponent implements OnInit {
   projects: Project[] = [];
   tasks: Task[] = [];
   feedbacks: Feedback[] = [];
+feedbackSearchTerm: any;
+projectSearchTerm: any;
+taskSearchTerm: any;
 
   constructor(
     private projectService: ProjectService,
@@ -71,7 +76,10 @@ export class DashboardComponent implements OnInit {
   }
 
   viewProjectDetails(project: Project): void {
-    // Logic to view project details
+    this.dialog.open(ProjectDetailsDialogComponent, {
+      width: '400px',
+      data: project
+    });
   }
 
   viewTaskDetails(task: Task): void {

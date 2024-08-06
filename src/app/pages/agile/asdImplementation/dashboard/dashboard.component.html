@@ -1,152 +1,122 @@
-<style>
-.dashboard-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  background-color: #f8f8f8;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
+<mat-horizontal-stepper linear class="custom-stepper">
+  <!-- Projects Step -->
+  <mat-step label="Speculate And Project Initialization">
+    <div class="dashboard-container">
+      <div class="section">
+        <div class="section-header">
+          <h2>Project Initialization</h2>
+          <button mat-raised-button color="primary" class="add-button" (click)="openCreateProjectDialog()">
+             New Project
+          </button>
+        </div>
+        <div class="card-container">
+          <mat-card *ngFor="let project of projects" class="dashboard-card">
+            <mat-card-header>
+              <mat-card-title>{{ project?.name }}</mat-card-title>
+              <mat-card-subtitle>{{ project?.description }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p><strong>Start:</strong> {{ project?.startDate | date:'mediumDate' }}</p>
+              <p><strong>End:</strong> {{ project?.endDate | date:'mediumDate' }}</p>
+              <p><strong>Priority:</strong> {{ project?.priority }}</p>
+              <p><strong>Status:</strong> <span class="status-chip" [ngClass]="project?.status.toLowerCase()">{{ project?.status }}</span></p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button class="view-button" (click)="viewProjectDetails(project)">
+                 View
+              </button>
+              <button mat-button class="delete-button" (click)="confirmDeleteProject(project)">
+                 Delete
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    <div class="stepper-buttons">
+      <button mat-flat-button color="primary" matStepperNext>Next </button>
+    </div>
+  </mat-step>
 
-.section {
-  flex: 1;
-  min-width: 320px;
-  max-width: 420px;
-  margin: 20px;
-  padding: 25px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-.section:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-h2 {
-  color: #444444;
-  font-size: 28px;
-  margin-bottom: 20px;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-button {
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-button:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.dashboard-card {
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease-in-out;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.dashboard-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.dashboard-card mat-card-title {
-  font-size: 20px;
-  font-weight: bold;
-  color: #333333;
-  padding: 12px;
-  background-color: #f5f5f5;
-}
-
-.dashboard-card mat-card-content {
-  color: #666666;
-  padding: 12px;
-}
-
-.dashboard-card mat-card-actions {
-  padding: 12px;
-  background-color: #f5f5f5;
-}
-
-.mat-form-field {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.mat-dialog-title {
-  font-size: 24px;
-  color: #444;
-  text-align: center;
-  padding-bottom: 10px;
-}
-
-.mat-dialog-actions {
-  justify-content: flex-end;
-  padding: 20px;
-}
-
-</style>
-
-<!-- Dashboard -->
-<div class="dashboard-container">
-  <!-- Projects Section -->
-  <div class="section">
-    <h2>Projects</h2>
-    <button mat-raised-button color="primary" (click)="openCreateProjectDialog()">
-      <mat-icon></mat-icon> Add Project
-    </button>
-    <mat-card *ngFor="let project of projects" class="dashboard-card">
-      <mat-card-title>{{ project?.name }}</mat-card-title>
-      <mat-card-subtitle>{{ project?.description }}</mat-card-subtitle>
-      <mat-card-actions>
-        <button mat-button (click)="viewProjectDetails(project)">View Details</button>
-        <button mat-button color="warn" (click)="confirmDeleteProject(project)">Delete</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-
-  <!-- Tasks Section -->
-  <div class="section">
-    <h2>Tasks</h2>
-    <button mat-raised-button color="primary" (click)="openCreateTaskDialog()">
-      <mat-icon></mat-icon> Add Task
-    </button>
-    <mat-card *ngFor="let task of tasks" class="dashboard-card">
-      <mat-card-title>{{ task?.name }}</mat-card-title>
-      <mat-card-subtitle>
-        Project: {{ task?.project?.name || 'No Project' }}
-      </mat-card-subtitle>
-      <mat-card-content>{{ task?.description }}</mat-card-content>
-      <mat-card-content>Status: {{ task?.status }}</mat-card-content>
-      <mat-card-actions>
-        <button mat-button (click)="viewTaskDetails(task)">View Details</button>
-        <button mat-button color="warn" (click)="confirmDeleteTask(task)">Delete</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-
-  <!-- Feedback Section -->
-  <div class="section">
-    <h2>Feedback</h2>
-    <button mat-raised-button color="primary" (click)="openCreateFeedbackDialog()">
-      <mat-icon></mat-icon> Add Feedback
-    </button>
-    <mat-card *ngFor="let feedback of feedbacks" class="dashboard-card">
-      <mat-card-title>{{ feedback?.comment }}</mat-card-title>
-      <mat-card-subtitle>
-        Task: {{ feedback?.task?.name || 'No Task' }}
-      </mat-card-subtitle>
-      <mat-card-content>Rating: {{ feedback?.rating }}</mat-card-content>
-      <mat-card-actions>
-        <button mat-button (click)="viewFeedbackDetails(feedback)">View Details</button>
-        <button mat-button color="warn" (click)="confirmDeleteFeedback(feedback)">Delete</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-</div>
+  <!-- Tasks Step -->
+  <mat-step label="Collaboration">
+    <div class="dashboard-container">
+      <div class="section">
+        <div class="section-header">
+          <h2>Tasks</h2>
+          <button mat-raised-button color="primary" class="add-button" (click)="openCreateTaskDialog()">
+             New Task
+          </button>
+        </div>
+        <div class="card-container">
+          <mat-card *ngFor="let task of tasks" class="dashboard-card">
+            <mat-card-header>
+              <mat-card-title>{{ task?.name }}</mat-card-title>
+              <mat-card-subtitle>{{ task?.description }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p><strong>Description:</strong> {{ task?.description }}</p>
+              <p><strong>Status:</strong> <span class="status-chip" [ngClass]="task?.status.toLowerCase()">{{ task?.status }}</span></p>
+              <p><strong>Priority:</strong> {{ task?.priority }}</p>
+              <p><strong>Deadline:</strong> {{ task?.deadline | date:'mediumDate' }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button class="view-button" (click)="viewTaskDetails(task)">
+                 View
+              </button>
+              <button mat-button class="delete-button" (click)="confirmDeleteTask(task)">
+                 Delete
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    <div class="stepper-buttons">
+      <button mat-stroked-button matStepperPrevious> Back</button>
+      <button mat-flat-button color="primary" matStepperNext>Next </button>
+    </div>
+  </mat-step>
+  <!-- Feedback Step -->
+  <mat-step label="Learn And Continuous Improvement">
+    <div class="dashboard-container">
+      <div class="section">
+        <div class="section-header">
+          <h2>Iteration Review</h2>
+          <button mat-raised-button color="primary" class="add-button" (click)="openCreateFeedbackDialog()">
+            Iteration Feedback
+          </button>
+        </div>
+        <div class="card-container">
+          <mat-card *ngFor="let feedback of feedbacks" class="dashboard-card">
+            <mat-card-header>
+              <mat-card-title>{{ feedback?.comment }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p><strong>Rating:</strong> 
+                <span class="rating-display">
+                  <span *ngFor="let star of [1,2,3,4,5]" class="star" [class.filled]="star <= feedback.rating">★</span>
+                </span>
+              </p>
+              <!-- Display images -->
+              <div class="preview-images" *ngIf="feedback?.imageUrls?.length">
+                <img *ngFor="let imageUrl of feedback.imageUrls" [src]="imageUrl" class="preview-image">
+              </div>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button class="view-button" (click)="viewFeedbackDetails(feedback)">
+                View
+              </button>
+              <button mat-button class="delete-button" (click)="confirmDeleteFeedback(feedback)">
+                Delete
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    <div class="stepper-buttons">
+      <button mat-stroked-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

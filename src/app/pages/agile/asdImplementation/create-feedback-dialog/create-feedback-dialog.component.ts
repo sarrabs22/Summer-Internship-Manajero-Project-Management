@@ -17,6 +17,8 @@ export class CreateFeedbackDialogComponent implements OnInit {
   feedbackForm: FormGroup;
   tasks: Task[] = [];
   users: User[] = [];
+  imagePreviews: string[] = []; // Array to hold image previews
+  images: File[] = []; // Array to hold selected files
 
   constructor(
     public dialogRef: MatDialogRef<CreateFeedbackDialogComponent>,
@@ -30,9 +32,7 @@ export class CreateFeedbackDialogComponent implements OnInit {
   ngOnInit(): void {
     this.feedbackForm = this.formBuilder.group({
       comment: ['', Validators.required],
-      rating: ['', [Validators.required, Validators.min(1), Validators.max(5)]],
-      givenBy: ['', Validators.required],
-      task: ['', Validators.required]
+      rating: ['', [Validators.required, Validators.min(1), Validators.max(5)]]
     });
 
     this.taskService.getAllTasks().subscribe((tasks) => {
@@ -50,8 +50,16 @@ export class CreateFeedbackDialogComponent implements OnInit {
 
   onCreate(): void {
     if (this.feedbackForm.valid) {
-      const newFeedback = this.feedbackForm.value;
-      this.feedbackService.createFeedback(newFeedback).subscribe(
+      const formData = new FormData();
+      formData.append('comment', this.feedbackForm.get('comment').value);
+      formData.append('rating', this.feedbackForm.get('rating').value);
+
+      // Append selected images to FormData
+      this.images.forEach(image => {
+        formData.append('images', image);
+      });
+
+      this.feedbackService.createFeedback(formData).subscribe(
         (response) => {
           this.dialogRef.close(response);
         },
@@ -60,5 +68,24 @@ export class CreateFeedbackDialogComponent implements OnInit {
         }
       );
     }
+  }
+
+  setRating(rating: number): void {
+    this.feedbackForm.get('rating').setValue(rating);
+  }
+
+  onFileChange(event: any): void {
+    const files = event.target.files;
+    this.images = Array.from(files);
+
+    // Generate previews for selected images
+    this.imagePreviews = [];
+    Array.from(files).forEach((file: File) => {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imagePreviews.push(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    });
   }
 }
