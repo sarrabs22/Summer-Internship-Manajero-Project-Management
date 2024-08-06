@@ -1,18 +1,19 @@
-import { User } from './User';
-
 export class Project {
-    id: string;
-    name: string;
-    description: string;
-    createdBy: User;
-    createdDate: Date;
-  
-    constructor() {
+  id: string;
+  name: string;
+  description: string;
+  startDate: Date;
+  endDate: Date;
+  priority: string;
+  status: string;
+
+  constructor() {
       this.id = '';
       this.name = '';
       this.description = '';
-      this.createdBy = new User();
-      this.createdDate = new Date();
-    }
+      this.startDate = new Date();
+      this.endDate = new Date();
+      this.priority = '';
+      this.status = '';
   }
-  
+}

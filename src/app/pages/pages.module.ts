@@ -40,6 +40,16 @@ import { IntroductionComponent } from './agile/asd/introduction/introduction.com
 import { ExhaustiveTutorialComponent } from './agile/asd/exhaustive-tutorial/exhaustive-tutorial.component';
 import { HowToImplementComponent } from './agile/asd/how-to-implement/how-to-implement.component';
 import { SummaryComponent } from './agile/asd/summary/summary.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ProjectDetailsDialogComponent } from './agile/asdImplementation/project-details-dialog/project-details-dialog.component';
+
+
+
+
+
+
 
 @NgModule({
   imports: [
@@ -52,7 +62,6 @@ import { SummaryComponent } from './agile/asd/summary/summary.component';
     NbCardModule,
     NbStepperModule,
     NbAccordionModule,
-
     MatCardModule,
     MatButtonModule,
     MatInputModule,
@@ -64,9 +73,11 @@ import { SummaryComponent } from './agile/asd/summary/summary.component';
     MatListModule,
     FormsModule,
     MatSelectModule,
-    ReactiveFormsModule
-
-  
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatStepperModule,
+    MatNativeDateModule  
+    
 
     
 
@@ -75,7 +86,6 @@ import { SummaryComponent } from './agile/asd/summary/summary.component';
     PagesComponent,
     AsdComponent,
     AsdImpComponent,
-
     DashboardComponent,
     CreateProjectDialogComponent,
     CreateTaskDialogComponent,
@@ -85,6 +95,9 @@ import { SummaryComponent } from './agile/asd/summary/summary.component';
     ExhaustiveTutorialComponent,
     HowToImplementComponent,
     SummaryComponent,
+    ProjectDetailsDialogComponent,
+
+    
 
   ],
 })

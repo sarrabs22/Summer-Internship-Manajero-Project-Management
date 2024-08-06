@@ -1,12 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TaskService } from '../Services/task.service';
-import { ProjectService } from '../Services/project.service';
-import { UserService } from '../Services/user.service';
-import { Task } from '../models/Task';
-import { Project } from '../models/Project';
-import { User } from '../models/User';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-task-dialog',
@@ -15,34 +10,24 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class CreateTaskDialogComponent implements OnInit {
   taskForm: FormGroup;
-  projects: Project[] = [];
-  users: User[] = [];
   statuses: string[] = ['To Do', 'In Progress', 'Done'];
+  priorities: string[] = ['Low', 'Medium', 'High'];
 
   constructor(
     public dialogRef: MatDialogRef<CreateTaskDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private taskService: TaskService,
-    private projectService: ProjectService,
-    private userService: UserService,
-    private formBuilder: FormBuilder
+    private fb: FormBuilder,
+    private taskService: TaskService
   ) {}
 
   ngOnInit(): void {
-    this.taskForm = this.formBuilder.group({
+    this.taskForm = this.fb.group({
+      id: [''],
       name: ['', Validators.required],
       description: ['', Validators.required],
-      project: ['', Validators.required],
-      assignedTo: ['', Validators.required],
-      status: ['', Validators.required]
-    });
-
-    this.projectService.getAllProjects().subscribe((projects) => {
-      this.projects = projects;
-    });
-
-    this.userService.getAllUsers().subscribe((users) => {
-      this.users = users;
+      status: ['', Validators.required],
+      priority: ['', Validators.required],
+      deadline: ['', Validators.required]
     });
   }
 
@@ -52,7 +37,7 @@ export class CreateTaskDialogComponent implements OnInit {
 
   onCreate(): void {
     if (this.taskForm.valid) {
-      const newTask = this.taskForm.value;
+      const newTask = this.taskForm.getRawValue(); // Remove createdAt and updatedAt fields
       this.taskService.createTask(newTask).subscribe(
         (response) => {
           this.dialogRef.close(response);

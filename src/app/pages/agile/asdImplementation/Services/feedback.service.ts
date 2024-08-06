@@ -11,8 +11,8 @@ export class FeedbackService {
 
   constructor(private http: HttpClient) {}
 
-  createFeedback(feedback: Feedback): Observable<Feedback> {
-    return this.http.post<Feedback>(this.apiUrl, feedback);
+  createFeedback(feedbackData: FormData): Observable<Feedback> {
+    return this.http.post<Feedback>(this.apiUrl, feedbackData);
   }
 
   getAllFeedbacks(): Observable<Feedback[]> {

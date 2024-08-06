@@ -1,23 +1,16 @@
-import { Project } from './Project';
-import { User } from './User';
-
-
 export class Task {
-   id?: string;
+  id?: string;
   name: string;
   description: string;
-  project: Project;
-  assignedTo: User;
   status?: string;
-  dueDate?: Date;
-
+  priority?: string;
+  deadline?: Date;
   constructor() {
     this.id = '';
     this.name = '';
     this.description = '';
-    this.project = new Project();
-    this.assignedTo = new User();
     this.status = '';
-    this.dueDate = new Date();
+    this.priority = '';
+    this.deadline = new Date();
   }
 }
