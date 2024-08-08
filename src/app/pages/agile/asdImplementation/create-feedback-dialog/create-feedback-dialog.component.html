@@ -10,18 +10,16 @@
             Content is required.
           </div>
         </div>
-
         <div class="form-field">
           <label>Rating</label>
           <div class="rating-input">
-            <span class="rating-star" *ngFor="let star of [1,2,3,4,5]" (click)="setRating(star)" [class.active]="star <= feedbackForm.get('rating').value">★</span>
+            <span class="rating-star" *ngFor="let star of [1,2,3,4,5]" (click)="setRating(star)" [class.active]="star <= feedbackForm.get('rating').value" [class.hover]="star <= hoverRating" (mouseover)="hoverRating = star" (mouseleave)="hoverRating = 0">★</span>
           </div>
           <div class="error" *ngIf="feedbackForm.get('rating').hasError('required') && feedbackForm.get('rating').touched">
             Rating is required.
           </div>
         </div>
       </div>
-
       <div class="form-row">
         <div class="form-field">
           <label for="images">Upload Images</label>
@@ -30,11 +28,21 @@
             <img *ngFor="let image of imagePreviews" [src]="image" class="preview-image">
           </div>
         </div>
+        <div class="form-field">
+          <label for="project">Assign to Project</label>
+          <select id="project" formControlName="projectId" required>
+            <option value="" disabled selected>Select a project</option>
+            <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
+          </select>
+          <div class="error" *ngIf="feedbackForm.get('projectId').hasError('required') && feedbackForm.get('projectId').touched">
+            Project is required.
+          </div>
+        </div>
       </div>
     </form>
   </div>
-</div>
-<div class="dialog-actions">
-  <button class="cancel-button" (click)="onCancel()">Cancel</button>
-  <button class="create-button" (click)="onCreate()" [disabled]="feedbackForm.invalid">Create</button>
+  <div class="dialog-actions">
+    <button class="cancel-button" (click)="onCancel()">Cancel</button>
+    <button class="create-button" (click)="onCreate()" [disabled]="feedbackForm.invalid">Create</button>
+  </div>
 </div>

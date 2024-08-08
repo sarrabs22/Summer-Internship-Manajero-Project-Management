@@ -1,0 +1,41 @@
+<div class="dashboard-container">
+  <mat-horizontal-stepper labelPosition="bottom">
+    <mat-step label="Statistics Overview">
+      <div class="stat-grid">
+        <div class="stat-card">
+          <h3>Total Projects</h3>
+          <p>{{ totalProjects }}</p>
+        </div>
+        <div class="stat-card">
+          <h3>Total Tasks</h3>
+          <p>{{ totalTasks }}</p>
+        </div>
+        <div class="stat-card">
+          <h3>Total Feedbacks</h3>
+          <p>{{ totalFeedbacks }}</p>
+        </div>
+      </div>
+
+      <div class="project-stats-section">
+        <h3>Projects and Their Statistics</h3>
+        <div class="project-stats-grid">
+          <div *ngFor="let stats of projectStatistics" class="project-stat-card">
+            <h4>{{ stats.name }}</h4>
+            <p>Number of Tasks: {{ stats.numberOfTasks }}</p>
+            <p>Number of Feedbacks: {{ stats.numberOfFeedbacks }}</p>
+            <p>Average Rating: {{ stats.averageRating }}</p>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+
+    <mat-step label="Charts">
+      <div class="chart-section">
+        <h3>Project Feedbacks</h3>
+        <div class="chart-container">
+          <canvas id="pieChart" width="100" height="100"></canvas>
+        </div>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

@@ -39,6 +39,19 @@
           <span class="error-message" *ngIf="taskForm.get('deadline').hasError('required') && taskForm.get('deadline').touched">Deadline is required</span>
         </div>
       </div>
+      <div class="form-row">
+        <!-- Project Selection -->
+        <div class="form-field">
+          <label for="project">Project</label>
+          <select id="project" formControlName="projectId" required>
+            <option value="" disabled selected>Select a project</option>
+            <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
+          </select>
+          <span class="error-message" *ngIf="taskForm.get('projectId').hasError('required') && taskForm.get('projectId').touched">
+            Project is required
+          </span>
+        </div>
+      </div>
     </form>
   </div>
 </div>

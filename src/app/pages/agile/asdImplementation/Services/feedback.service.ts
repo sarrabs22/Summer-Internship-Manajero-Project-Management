@@ -30,4 +30,9 @@ export class FeedbackService {
   deleteFeedback(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  assignFeedbackToProject(feedbackId: string, projectId: string): Observable<Feedback> {
+    const url = `${this.apiUrl}/${feedbackId}/assign-project/${projectId}`;
+    return this.http.put<Feedback>(url, null);
+  }
 }

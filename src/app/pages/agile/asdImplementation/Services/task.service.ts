@@ -31,4 +31,9 @@ export class TaskService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
+  assignTaskToProject(taskId: string, projectId: string): Observable<Task> {
+    const url = `${this.apiUrl}/${taskId}/assign-project/${projectId}`;
+    return this.http.put<Task>(url, null);
+  }
+
 }

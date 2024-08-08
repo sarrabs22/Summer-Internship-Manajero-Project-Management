@@ -183,3 +183,38 @@ button[mat-stroked-button] {
   object-fit: cover;
   border-radius: 5px;
 }
+.header-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.dashboard-button {
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 10px;
+  text-transform: none; /* Ensure the text is not uppercase */
+  border-radius: 5px; /* Rounded corners for a modern look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  background-color: #2196F3; /* Primary color or a distinctive color */
+  color: white;
+
+  mat-icon {
+    margin-right: 8px; /* Space between the icon and text */
+  }
+
+  &:hover {
+    background-color: #1976D2; /* Slightly darker color on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Increased shadow on hover */
+  }
+
+  &:focus {
+    outline: none; /* Remove default focus outline */
+    border: 2px solid #1565C0; /* Add custom focus border */
+  }
+
+  &:active {
+    background-color: #0D47A1; /* Darker color when button is pressed */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Return to original shadow */
+  }
+}

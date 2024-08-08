@@ -1,3 +1,7 @@
+
+import { Project } from "./Project";
+
+
 export class Task {
   id?: string;
   name: string;
@@ -5,6 +9,8 @@ export class Task {
   status?: string;
   priority?: string;
   deadline?: Date;
+  project?: Project; // Add this line
+
   constructor() {
     this.id = '';
     this.name = '';

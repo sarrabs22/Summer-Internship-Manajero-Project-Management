@@ -10,6 +10,7 @@ import { Project } from '../models/Project';
 import { Feedback } from '../models/Feedback';
 import { Task } from '../models/Task';
 import { ProjectDetailsDialogComponent } from '../project-details-dialog/project-details-dialog.component';
+import { StatisticsComponent } from '../statistics/statistics.component';
 
 
 
@@ -22,9 +23,10 @@ export class DashboardComponent implements OnInit {
   projects: Project[] = [];
   tasks: Task[] = [];
   feedbacks: Feedback[] = [];
-feedbackSearchTerm: any;
-projectSearchTerm: any;
-taskSearchTerm: any;
+  feedbackSearchTerm: any;
+  projectSearchTerm: any;
+  taskSearchTerm: any;
+  router: any;
 
   constructor(
     private projectService: ProjectService,
@@ -123,6 +125,16 @@ taskSearchTerm: any;
   deleteFeedback(feedback: Feedback): void {
     this.feedbackService.deleteFeedback(feedback.id).subscribe(() => {
       this.loadFeedbacks();
+    });
+  }
+
+  openstatistcs(): void {
+    const dialogRef = this.dialog.open(StatisticsComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadProjects();
+      }
     });
   }
 

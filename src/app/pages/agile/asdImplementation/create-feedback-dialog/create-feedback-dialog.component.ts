@@ -1,11 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FeedbackService } from '../Services/feedback.service';
-import { TaskService } from '../Services/task.service';
-import { UserService } from '../Services/user.service';
-import { Feedback } from '../models/Feedback';
-import { Task } from '../models/Task';
-import { User } from '../models/User';
+import { ProjectService } from '../Services/project.service';
+import { Project } from '../models/Project';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -15,32 +12,27 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CreateFeedbackDialogComponent implements OnInit {
   feedbackForm: FormGroup;
-  tasks: Task[] = [];
-  users: User[] = [];
-  imagePreviews: string[] = []; // Array to hold image previews
-  images: File[] = []; // Array to hold selected files
+  projects: Project[] = [];
+  imagePreviews: string[] = []; 
+  images: File[] = []; 
 
   constructor(
     public dialogRef: MatDialogRef<CreateFeedbackDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private feedbackService: FeedbackService,
-    private taskService: TaskService,
-    private userService: UserService,
+    private projectService: ProjectService,
     private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.feedbackForm = this.formBuilder.group({
       comment: ['', Validators.required],
-      rating: ['', [Validators.required, Validators.min(1), Validators.max(5)]]
+      rating: ['', [Validators.required, Validators.min(1), Validators.max(5)]],
+      projectId: ['', Validators.required]
     });
 
-    this.taskService.getAllTasks().subscribe((tasks) => {
-      this.tasks = tasks;
-    });
-
-    this.userService.getAllUsers().subscribe((users) => {
-      this.users = users;
+    this.projectService.getAllProjects().subscribe((projects) => {
+      this.projects = projects;
     });
   }
 
@@ -54,14 +46,21 @@ export class CreateFeedbackDialogComponent implements OnInit {
       formData.append('comment', this.feedbackForm.get('comment').value);
       formData.append('rating', this.feedbackForm.get('rating').value);
 
-      // Append selected images to FormData
       this.images.forEach(image => {
         formData.append('images', image);
       });
 
       this.feedbackService.createFeedback(formData).subscribe(
         (response) => {
-          this.dialogRef.close(response);
+          const projectId = this.feedbackForm.get('projectId').value;
+          this.feedbackService.assignFeedbackToProject(response.id!, projectId).subscribe(
+            () => {
+              this.dialogRef.close(response);
+            },
+            (error) => {
+              console.error('Error assigning feedback to project:', error);
+            }
+          );
         },
         (error) => {
           console.error('Error creating feedback:', error);
@@ -78,7 +77,6 @@ export class CreateFeedbackDialogComponent implements OnInit {
     const files = event.target.files;
     this.images = Array.from(files);
 
-    // Generate previews for selected images
     this.imagePreviews = [];
     Array.from(files).forEach((file: File) => {
       const reader = new FileReader();
