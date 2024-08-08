@@ -13,7 +13,8 @@ h1 {
 
 .form-wrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column; /* Changed to column to align buttons below the form card */
+  align-items: center;
   padding: 20px;
 }
 
@@ -106,6 +107,7 @@ h2 {
   justify-content: flex-end;
   gap: 10px;
   margin-top: 20px;
+  width: 100%; /* Ensure buttons take full width of the form-wrapper */
 }
 
 .cancel-button,
@@ -139,6 +141,23 @@ h2 {
 .create-button:disabled {
   background-color: #b0bec5;
   cursor: not-allowed;
+}
+
+.rating-input {
+  display: flex;
+  gap: 5px;
+}
+
+.rating-star {
+  font-size: 24px;
+  color: #ddd;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.rating-star.active,
+.rating-star.hover {
+  color: #f39c12;
 }
 
 @media (max-width: 768px) {

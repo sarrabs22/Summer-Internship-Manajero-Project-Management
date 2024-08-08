@@ -1,3 +1,6 @@
+import { Feedback } from './Feedback';
+import { Task } from './Task';
+
 export class Project {
   id: string;
   name: string;
@@ -6,14 +9,16 @@ export class Project {
   endDate: Date;
   priority: string;
   status: string;
+  tasks?: Task[];
+  feedbacks?: Feedback[];
 
   constructor() {
-      this.id = '';
-      this.name = '';
-      this.description = '';
-      this.startDate = new Date();
-      this.endDate = new Date();
-      this.priority = '';
-      this.status = '';
+    this.id = '';
+    this.name = '';
+    this.description = '';
+    this.startDate = new Date();
+    this.endDate = new Date();
+    this.priority = '';
+    this.status = '';
   }
 }

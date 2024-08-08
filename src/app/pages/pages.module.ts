@@ -44,6 +44,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ProjectDetailsDialogComponent } from './agile/asdImplementation/project-details-dialog/project-details-dialog.component';
+import { ChartsModule } from './charts/charts.module';
+import { StatisticsComponent } from './agile/asdImplementation/statistics/statistics.component';
 
 
 
@@ -76,7 +78,8 @@ import { ProjectDetailsDialogComponent } from './agile/asdImplementation/project
     ReactiveFormsModule,
     MatDatepickerModule,
     MatStepperModule,
-    MatNativeDateModule  
+    MatNativeDateModule,
+    ChartsModule  
     
 
     
@@ -96,6 +99,7 @@ import { ProjectDetailsDialogComponent } from './agile/asdImplementation/project
     HowToImplementComponent,
     SummaryComponent,
     ProjectDetailsDialogComponent,
+    StatisticsComponent,
 
     
 

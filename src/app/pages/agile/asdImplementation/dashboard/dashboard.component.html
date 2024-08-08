@@ -1,3 +1,6 @@
+<div class="header-container">
+  <button mat-raised-button color="primary" (click)="openstatistcs()">Dashboard</button>
+</div>
 <mat-horizontal-stepper linear class="custom-stepper">
   <!-- Projects Step -->
   <mat-step label="Speculate And Project Initialization">
@@ -45,7 +48,7 @@
         <div class="section-header">
           <h2>Tasks</h2>
           <button mat-raised-button color="primary" class="add-button" (click)="openCreateTaskDialog()">
-             New Task
+            New Task
           </button>
         </div>
         <div class="card-container">
@@ -56,16 +59,23 @@
             </mat-card-header>
             <mat-card-content>
               <p><strong>Description:</strong> {{ task?.description }}</p>
-              <p><strong>Status:</strong> <span class="status-chip" [ngClass]="task?.status.toLowerCase()">{{ task?.status }}</span></p>
+              <p><strong>Status:</strong> 
+                <span class="status-chip" [ngClass]="task?.status.toLowerCase()">{{ task?.status }}</span>
+              </p>
               <p><strong>Priority:</strong> {{ task?.priority }}</p>
               <p><strong>Deadline:</strong> {{ task?.deadline | date:'mediumDate' }}</p>
+              <ng-container *ngIf="task?.project">
+                <p><strong>Project:</strong> {{ task?.project.name }}</p>
+                <p><strong>Project Description:</strong> {{ task?.project.description }}</p>
+                <p><strong>Project Status:</strong> {{ task?.project.status }}</p>
+              </ng-container>
             </mat-card-content>
             <mat-card-actions>
               <button mat-button class="view-button" (click)="viewTaskDetails(task)">
-                 View
+                View
               </button>
               <button mat-button class="delete-button" (click)="confirmDeleteTask(task)">
-                 Delete
+                Delete
               </button>
             </mat-card-actions>
           </mat-card>
@@ -77,6 +87,7 @@
       <button mat-flat-button color="primary" matStepperNext>Next </button>
     </div>
   </mat-step>
+  
   <!-- Feedback Step -->
   <mat-step label="Learn And Continuous Improvement">
     <div class="dashboard-container">
@@ -93,12 +104,16 @@
               <mat-card-title>{{ feedback?.comment }}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
+              <p><strong>Project:</strong> 
+                <span>
+                  {{ feedback.project.name }}
+                </span>
+              </p>
               <p><strong>Rating:</strong> 
                 <span class="rating-display">
                   <span *ngFor="let star of [1,2,3,4,5]" class="star" [class.filled]="star <= feedback.rating">★</span>
                 </span>
               </p>
-              <!-- Display images -->
               <div class="preview-images" *ngIf="feedback?.imageUrls?.length">
                 <img *ngFor="let imageUrl of feedback.imageUrls" [src]="imageUrl" class="preview-image">
               </div>
@@ -119,4 +134,5 @@
       <button mat-stroked-button matStepperPrevious>Back</button>
     </div>
   </mat-step>
+  
 </mat-horizontal-stepper>

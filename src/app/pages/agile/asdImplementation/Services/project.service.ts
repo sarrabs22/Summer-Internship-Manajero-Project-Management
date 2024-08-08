@@ -26,4 +26,9 @@ export class ProjectService {
   deleteProject(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  addTaskToProject(projectId: string, task: Task): Observable<Project> {
+    const url = `${this.apiUrl}/${projectId}/add-task`;
+    return this.http.put<Project>(url, task);
+  }
 }
