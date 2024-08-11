@@ -9,6 +9,7 @@ export class Task {
   status?: string;
   priority?: string;
   deadline?: Date;
+  completionDate?: Date;
   project?: Project; // Add this line
 
   constructor() {

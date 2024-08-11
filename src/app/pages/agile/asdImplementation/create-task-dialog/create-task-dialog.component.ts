@@ -31,6 +31,7 @@ export class CreateTaskDialogComponent implements OnInit {
       status: ['', Validators.required],
       priority: ['', Validators.required],
       deadline: ['', Validators.required],
+      completionDate: ['', Validators.required],
       projectId: ['', Validators.required] // Add projectId field
     });
 

@@ -31,12 +31,15 @@
           </select>
           <span class="error-message" *ngIf="taskForm.get('priority').hasError('required') && taskForm.get('priority').touched">Priority is required</span>
         </div>
-      </div>
-      <div class="form-row">
         <div class="form-field">
           <label for="deadline">Deadline</label>
           <input id="deadline" type="date" formControlName="deadline" required>
           <span class="error-message" *ngIf="taskForm.get('deadline').hasError('required') && taskForm.get('deadline').touched">Deadline is required</span>
+        </div>
+        <div class="form-field">
+          <label for="completionDate">Completion Date</label>
+          <input id="completionDate" type="date" formControlName="completionDate" required>
+          <span class="error-message" *ngIf="taskForm.get('completionDate').hasError('required') && taskForm.get('completionDate').touched">Completion Date is required</span>
         </div>
       </div>
       <div class="form-row">

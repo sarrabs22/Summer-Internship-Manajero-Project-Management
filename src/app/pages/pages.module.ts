@@ -46,6 +46,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ProjectDetailsDialogComponent } from './agile/asdImplementation/project-details-dialog/project-details-dialog.component';
 import { ChartsModule } from './charts/charts.module';
 import { StatisticsComponent } from './agile/asdImplementation/statistics/statistics.component';
+import { RouterModule } from '@angular/router';
+import { routes } from '@nebular/auth';
 
 
 
@@ -79,7 +81,8 @@ import { StatisticsComponent } from './agile/asdImplementation/statistics/statis
     MatDatepickerModule,
     MatStepperModule,
     MatNativeDateModule,
-    ChartsModule  
+    ChartsModule,
+    RouterModule.forChild(routes)
     
 
     
