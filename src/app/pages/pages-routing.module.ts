@@ -8,6 +8,8 @@ import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { AsdComponent } from './agile/asd/asd.component'; // Import the ASD component
 import { AsdImpComponent } from './agile/asdImplementation/asd-imp/asd-imp.component';
+import { StatisticsComponent } from './agile/asdImplementation/statistics/statistics.component';
+import { CreateProjectDialogComponent } from './agile/asdImplementation/create-project-dialog/create-project-dialog.component';
 
 
 
@@ -82,10 +84,14 @@ const routes: Routes = [{
       component: AsdImpComponent,
     },
     {
-
-      path: 'agile/dashASD', 
+      path: 'agile/dashASD',
       component: DashboardComponent,
     },
+    {
+      path: 'agile/dashASD/stat', 
+      component: StatisticsComponent,
+    },
+    
     {
 
       path: '',

@@ -4,5 +4,7 @@ export interface ProjectStatisticsDTO {
     numberOfTasks: number;
     numberOfFeedbacks: number;
     averageRating: number;
+    averageTaskCompletionTime: number;
+    percentageOfCompletedTasks: number;
   }
   

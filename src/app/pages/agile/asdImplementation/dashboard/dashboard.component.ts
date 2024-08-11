@@ -11,6 +11,7 @@ import { Feedback } from '../models/Feedback';
 import { Task } from '../models/Task';
 import { ProjectDetailsDialogComponent } from '../project-details-dialog/project-details-dialog.component';
 import { StatisticsComponent } from '../statistics/statistics.component';
+import { ActivatedRoute, Route, RouteConfigLoadStart, Router } from '@angular/router';
 
 
 
@@ -26,14 +27,16 @@ export class DashboardComponent implements OnInit {
   feedbackSearchTerm: any;
   projectSearchTerm: any;
   taskSearchTerm: any;
-  router: any;
+  
 
   constructor(
     private projectService: ProjectService,
     private taskService: TaskService,
     private feedbackService: FeedbackService,
-    public dialog: MatDialog
-  ) {}
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
+    ) {}
 
   ngOnInit(): void {
     this.loadProjects();
@@ -128,16 +131,10 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  openstatistcs(): void {
-    const dialogRef = this.dialog.open(StatisticsComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.loadProjects();
-      }
-    });
+  navigateToStat() {
+    this.router.navigate(['/pages/agile/dashASD/stat']);
   }
-
+   
   openCreateProjectDialog(): void {
     const dialogRef = this.dialog.open(CreateProjectDialogComponent);
 
