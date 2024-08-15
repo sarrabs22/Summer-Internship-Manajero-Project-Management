@@ -10,6 +10,7 @@ import { AsdComponent } from './agile/asd/asd.component'; // Import the ASD comp
 import { AsdImpComponent } from './agile/asdImplementation/asd-imp/asd-imp.component';
 import { StatisticsComponent } from './agile/asdImplementation/statistics/statistics.component';
 import { CreateProjectDialogComponent } from './agile/asdImplementation/create-project-dialog/create-project-dialog.component';
+import { ArchivedItemsComponent } from './agile/asdImplementation/archived-items/archived-items.component';
 
 
 
@@ -91,6 +92,7 @@ const routes: Routes = [{
       path: 'agile/dashASD/stat', 
       component: StatisticsComponent,
     },
+    { path: 'agile/dashASD/archived-items', component: ArchivedItemsComponent },
     
     {
 

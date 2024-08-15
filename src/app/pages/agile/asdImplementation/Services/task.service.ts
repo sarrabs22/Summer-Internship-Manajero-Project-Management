@@ -35,5 +35,14 @@ export class TaskService {
     const url = `${this.apiUrl}/${taskId}/assign-project/${projectId}`;
     return this.http.put<Task>(url, null);
   }
+  restoreTask(id: string): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}/restore`, {});
+}
+getAllArchivedTasks(): Observable<Task[]> {
+  return this.http.get<Task[]>(`${this.apiUrl}/archived`);
+}
+archiveTask(id: string): Observable<void> {
+  return this.http.put<void>(`${this.apiUrl}/${id}/archive`, {});
+}
 
 }

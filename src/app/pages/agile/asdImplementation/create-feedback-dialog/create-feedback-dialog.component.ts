@@ -79,11 +79,12 @@ export class CreateFeedbackDialogComponent implements OnInit {
 
     this.imagePreviews = [];
     Array.from(files).forEach((file: File) => {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.imagePreviews.push(e.target.result);
-      };
-      reader.readAsDataURL(file);
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+            this.imagePreviews.push(e.target.result);
+        };
+        reader.readAsDataURL(file);
     });
-  }
+}
+
 }

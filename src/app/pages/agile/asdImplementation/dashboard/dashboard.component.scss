@@ -1,3 +1,32 @@
+.custom-tabs {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.custom-tabs button {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.custom-tabs button:hover {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+}
+
+.custom-tabs button.active {
+  background-color: #3498db;
+  color: white;
+  border-radius: 4px;
+}
 /* Global Styles */
 body {
   font-family: 'Roboto', sans-serif;
@@ -93,7 +122,6 @@ mat-card-content {
   padding: 0 16px 16px;
 }
 
-/* Status Chip */
 .status-chip {
   display: inline-block;
   padding: 4px 12px;
@@ -102,11 +130,27 @@ mat-card-content {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-
-  &.completed { background-color: #2ecc71; color: white; }
-  &.in-progress { background-color: #3498db; color: white; }
-  &.not-started { background-color: #e74c3c; color: white; }
+  color: white; /* Ensure all chips have white text for visibility */
 }
+
+.status-chip.completed { 
+  background-color: #2ecc71; /* Green */
+}
+
+.status-chip.in-progress { 
+  background-color: #3498db; /* Blue */
+}
+
+.status-chip.not-started { 
+  background-color: #e74c3c; /* Red */
+}
+.status-chip.to-do { 
+  background-color: #914781; /* Red */
+}
+.status-chip.done { 
+  background-color: #2ecc71; /* Red */
+}
+
 
 /* Card Actions */
 mat-card-actions {

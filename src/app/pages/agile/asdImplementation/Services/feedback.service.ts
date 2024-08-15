@@ -35,4 +35,16 @@ export class FeedbackService {
     const url = `${this.apiUrl}/${feedbackId}/assign-project/${projectId}`;
     return this.http.put<Feedback>(url, null);
   }
+  archiveFeedback(id: string): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}/archive`, {});
+}
+
+restoreFeedback(id: string): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}/restore`, {});
+}
+getAllArchivedFeedbacks(): Observable<Feedback[]> {
+  return this.http.get<Feedback[]>(`${this.apiUrl}/archived`);
+}
+
+
 }
