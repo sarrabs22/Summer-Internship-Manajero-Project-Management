@@ -48,6 +48,12 @@ import { ChartsModule } from './charts/charts.module';
 import { StatisticsComponent } from './agile/asdImplementation/statistics/statistics.component';
 import { RouterModule } from '@angular/router';
 import { routes } from '@nebular/auth';
+import { ArchivedItemsComponent } from './agile/asdImplementation/archived-items/archived-items.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogOverviewExampleDialog } from './agile/asdImplementation/dialog-overview-example-dialog/dialog-overview-example-dialog.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -75,6 +81,9 @@ import { routes } from '@nebular/auth';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    MatTableModule,
+    
+    MatSnackBarModule,
     FormsModule,
     MatSelectModule,
     ReactiveFormsModule,
@@ -103,6 +112,8 @@ import { routes } from '@nebular/auth';
     SummaryComponent,
     ProjectDetailsDialogComponent,
     StatisticsComponent,
+    ArchivedItemsComponent,
+    DialogOverviewExampleDialog,
 
     
 

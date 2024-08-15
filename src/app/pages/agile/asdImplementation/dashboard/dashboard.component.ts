@@ -11,9 +11,8 @@ import { Feedback } from '../models/Feedback';
 import { Task } from '../models/Task';
 import { ProjectDetailsDialogComponent } from '../project-details-dialog/project-details-dialog.component';
 import { StatisticsComponent } from '../statistics/statistics.component';
-import { ActivatedRoute, Route, RouteConfigLoadStart, Router } from '@angular/router';
-
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { DialogOverviewExampleDialog } from '../dialog-overview-example-dialog/dialog-overview-example-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,6 +26,7 @@ export class DashboardComponent implements OnInit {
   feedbackSearchTerm: any;
   projectSearchTerm: any;
   taskSearchTerm: any;
+  selectedTab: number = 0; // Initialize to the first tab
   
 
   constructor(
@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    ) {}
+  ) {}
 
   ngOnInit(): void {
     this.loadProjects();
@@ -87,30 +87,54 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  viewTaskDetails(task: Task): void {
-    // Logic to view task details
+  getStatusClass(status: string): string {
+    if (!status) return '';
+    return status.replace(/\s+/g, '-').toLowerCase();
   }
 
-  viewFeedbackDetails(feedback: Feedback): void {
-    // Logic to view feedback details
+  archiveFeedback(feedback: Feedback): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: { message: 'Do you really want to archive this feedback?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.feedbackService.archiveFeedback(feedback.id).subscribe(() => {
+          this.loadFeedbacks(); // Reload the list to reflect changes
+        });
+      }
+    });
   }
 
-  confirmDeleteProject(project: Project): void {
-    if (confirm(`Are you sure you want to delete the project "${project.name}"?`)) {
-      this.deleteProject(project);
-    }
+  archiveProject(project: Project): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: { message: 'Do you really want to archive this project?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.projectService.archiveProject(project.id).subscribe(() => {
+          this.loadProjects(); // Reload the list to reflect changes
+        });
+      }
+    });
   }
 
-  confirmDeleteTask(task: Task): void {
-    if (confirm(`Are you sure you want to delete the task "${task.name}"?`)) {
-      this.deleteTask(task);
-    }
-  }
+  archiveTask(task: Task): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: { message: 'Do you really want to archive this task?' }
+    });
 
-  confirmDeleteFeedback(feedback: Feedback): void {
-    if (confirm(`Are you sure you want to delete this feedback?`)) {
-      this.deleteFeedback(feedback);
-    }
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.taskService.archiveTask(task.id).subscribe(() => {
+          this.loadTasks(); // Reload the list to reflect changes
+        });
+      }
+    });
   }
 
   deleteProject(project: Project): void {
@@ -134,7 +158,11 @@ export class DashboardComponent implements OnInit {
   navigateToStat() {
     this.router.navigate(['/pages/agile/dashASD/stat']);
   }
-   
+
+  navigateArchive() {
+    this.router.navigate(['/pages/agile/dashASD/archived-items']);
+  }
+
   openCreateProjectDialog(): void {
     const dialogRef = this.dialog.open(CreateProjectDialogComponent);
 
