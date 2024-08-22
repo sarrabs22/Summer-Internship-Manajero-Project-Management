@@ -15,7 +15,12 @@
         <div class="form-field half-width">
           <label>Rating</label>
           <div class="rating-input">
-            <span class="rating-star" *ngFor="let star of [1,2,3,4,5]" (click)="setRating(star)" [class.active]="star <= feedbackForm.get('rating').value" [class.hover]="star <= hoverRating" (mouseover)="hoverRating = star" (mouseleave)="hoverRating = 0">★</span>
+            <span class="rating-star" *ngFor="let star of [1,2,3,4,5]" 
+              (click)="setRating(star)" 
+              [class.active]="star <= feedbackForm.get('rating').value" 
+              [class.hover]="star <= hoverRating" 
+              (mouseover)="hoverRating = star" 
+              (mouseleave)="hoverRating = 0">★</span>
           </div>
           <div class="error" *ngIf="feedbackForm.get('rating').hasError('required') && feedbackForm.get('rating').touched">
             Rating is required.
