@@ -3,14 +3,16 @@
     <h2>Iteration Review</h2>
     <form [formGroup]="feedbackForm">
       <div class="form-row">
-        <div class="form-field">
+        <div class="form-field full-width">
           <label for="comment">Content</label>
           <textarea id="comment" placeholder="Enter your feedback" formControlName="comment" required></textarea>
           <div class="error" *ngIf="feedbackForm.get('comment').hasError('required') && feedbackForm.get('comment').touched">
             Content is required.
           </div>
         </div>
-        <div class="form-field">
+      </div>
+      <div class="form-row">
+        <div class="form-field half-width">
           <label>Rating</label>
           <div class="rating-input">
             <span class="rating-star" *ngFor="let star of [1,2,3,4,5]" (click)="setRating(star)" [class.active]="star <= feedbackForm.get('rating').value" [class.hover]="star <= hoverRating" (mouseover)="hoverRating = star" (mouseleave)="hoverRating = 0">★</span>
@@ -19,16 +21,7 @@
             Rating is required.
           </div>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label for="images">Upload Images</label>
-          <input id="images" type="file" (change)="onFileChange($event)" multiple>
-          <div class="preview-images" *ngIf="imagePreviews.length">
-            <img *ngFor="let image of imagePreviews" [src]="image" class="preview-image">
-          </div>
-        </div>
-        <div class="form-field">
+        <div class="form-field half-width">
           <label for="project">Assign to Project</label>
           <select id="project" formControlName="projectId" required>
             <option value="" disabled selected>Select a project</option>
@@ -36,6 +29,15 @@
           </select>
           <div class="error" *ngIf="feedbackForm.get('projectId').hasError('required') && feedbackForm.get('projectId').touched">
             Project is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field full-width">
+          <label for="images">Upload Images</label>
+          <input id="images" type="file" (change)="onFileChange($event)" multiple>
+          <div class="preview-images" *ngIf="imagePreviews.length">
+            <img *ngFor="let image of imagePreviews" [src]="image" class="preview-image">
           </div>
         </div>
       </div>
