@@ -1,5 +1,6 @@
 <div class="container">
-  <a href="#" class="back-button">Go Back</a>
+  <button (click)="navigateBack()" class="back-button">Go Back</button>
+
 
   <h2>Archived Feedback</h2>
   <div *ngIf="archivedItems.data.length === 0">No archived feedback found.</div>
