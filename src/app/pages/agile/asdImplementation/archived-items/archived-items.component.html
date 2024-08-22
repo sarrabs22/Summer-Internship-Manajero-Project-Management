@@ -1,83 +1,77 @@
-<div class="archived-items-container">
-    <button mat-raised-button color="primary" (click)="navigateBack()">Go Back</button>
+<div class="container">
+  <a href="#" class="back-button">Go Back</a>
 
-    <h2>Archived Feedback</h2>
-    <div *ngIf="archivedItems.data.length === 0">No archived feedback found.</div>
-    <table mat-table [dataSource]="archivedItems" class="mat-elevation-z8">
-      <ng-container matColumnDef="comment">
-        <th mat-header-cell *matHeaderCellDef> Comment </th>
-        <td mat-cell *matCellDef="let item"> {{item.comment}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="project">
-        <th mat-header-cell *matHeaderCellDef> Project </th>
-        <td mat-cell *matCellDef="let item"> {{item.project?.name}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="rating">
-        <th mat-header-cell *matHeaderCellDef> Rating </th>
-        <td mat-cell *matCellDef="let item"> {{item.rating}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
-        <td mat-cell *matCellDef="let item">
-          <button mat-button color="primary" (click)="restoreItem(item.id)">Restore</button>
-          <button mat-button color="warn" (click)="deleteItem(item.id)">Delete</button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <h2>Archived Feedback</h2>
+  <div *ngIf="archivedItems.data.length === 0">No archived feedback found.</div>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Comment</th>
+          <th>Project</th>
+          <th>Rating</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of archivedItems.data">
+          <td>{{item.comment}}</td>
+          <td>{{item.project?.name}}</td>
+          <td>{{item.rating}}</td>
+          <td>
+            <button (click)="restoreItem(item.id)">Restore</button>
+            <button (click)="deleteItem(item.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
+  </div>
 
-    <h2>Archived Projects</h2>
-    <div *ngIf="archivedP.data.length === 0">No archived projects found.</div>
-    <table mat-table [dataSource]="archivedP" class="mat-elevation-z8">
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let project"> {{project.name}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef> Description </th>
-        <td mat-cell *matCellDef="let project"> {{project.description}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
-        <td mat-cell *matCellDef="let project">
-          <button mat-button color="primary" (click)="restoreP(project.id)">Restore</button>
-          <button mat-button color="warn" (click)="deleteProject(project.id)">Delete</button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedProjectColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedProjectColumns;"></tr>
+  <h2>Archived Projects</h2>
+  <div *ngIf="archivedP.data.length === 0">No archived projects found.</div>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of archivedP.data">
+          <td>{{project.name}}</td>
+          <td>{{project.description}}</td>
+          <td>
+            <button (click)="restoreP(project.id)">Restore</button>
+            <button (click)="deleteProject(project.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
+  </div>
 
-    <h2>Archived Tasks</h2>
-    <div *ngIf="archivedT.data.length === 0">No archived tasks found.</div>
-    <table mat-table [dataSource]="archivedT" class="mat-elevation-z8">
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let task"> {{task.name}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef> Description </th>
-        <td mat-cell *matCellDef="let task"> {{task.description}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
-        <td mat-cell *matCellDef="let task">
-          <button mat-button color="primary" (click)="restoreT(task.id)">Restore</button>
-          <button mat-button color="warn" (click)="deleteTask(task.id)">Delete</button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedTaskColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedTaskColumns;"></tr>
+  <h2>Archived Tasks</h2>
+  <div *ngIf="archivedT.data.length === 0">No archived tasks found.</div>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of archivedT.data">
+          <td>{{task.name}}</td>
+          <td>{{task.description}}</td>
+          <td>
+            <button (click)="restoreT(task.id)">Restore</button>
+            <button (click)="deleteTask(task.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
+  </div>
 </div>

@@ -162,14 +162,20 @@ export class StatisticsComponent implements OnInit {
   }
 
   createTaskCompletionRateChart(): void {
+    // Log the completion rate to check its value
+    console.log('Task Completion Rate:', this.taskCompletionRate);
+  
+    // Handle edge cases where taskCompletionRate might be undefined or NaN
+    const completionRate = this.taskCompletionRate !== undefined ? this.taskCompletionRate : 0;
+  
     const data: ChartData<'doughnut'> = {
       labels: ['Completed', 'Pending'],
       datasets: [{
-        data: [this.taskCompletionRate, 100 - this.taskCompletionRate],
+        data: [completionRate, 100 - completionRate],
         backgroundColor: ['#FF9800', '#9E9E9E']
       }]
     };
-
+  
     const options: ChartOptions<'doughnut'> = {
       responsive: true,
       plugins: {
@@ -179,13 +185,14 @@ export class StatisticsComponent implements OnInit {
         }
       }
     };
-
+  
     new Chart('taskCompletionRateChart', {
       type: 'doughnut',
       data,
       options
     });
   }
+  
 
   navigateToImp() {
     this.router.navigate(['/pages/agile/dashASD']);
