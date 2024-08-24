@@ -1,128 +1,56 @@
-
-<style>
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    background-color: #f5f5f5;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .form-field {
-    margin-bottom: 16px;
-    width: 100%;
-  }
-
-  .collaboration-list,
-  .speculations-list,
-  .learning-list {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  .collaboration-item,
-  .speculations-item,
-  .learning-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-
-  .collaboration-item input,
-  .speculations-item input,
-  .learning-item input {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-
-  .remove-button {
-    margin-left: 8px;
-  }
-
-  .actions {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 16px;
-  }
-
-  .actions button {
-    margin-left: 8px;
-  }
-  .image-preview {
-    width: 200px;
-    height: 200px;
-    border: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-  }
-
-  .image-preview img {
-    max-width: 100%;
-    max-height: 100%;
-  }
-</style>
-
-<div class="container">
-  <h1 mat-dialog-title>{{ data?.id ? 'Edit' : 'Add' }} Introduction</h1>
-  <div mat-dialog-content>
-    <form [formGroup]="introductionForm">
-      <mat-form-field class="form-field">
-        <mat-label>Origins</mat-label>
-        <input matInput formControlName="origins">
-      </mat-form-field>
-      <mat-form-field class="form-field">
-        <mat-label>Methodology</mat-label>
-        <input matInput formControlName="methodology">
-      </mat-form-field>
-      <mat-form-field class="form-field">
-        <mat-label>Impact</mat-label>
-        <input matInput formControlName="impact">
-      </mat-form-field>
-
-      
-      <div formArrayName="collaboration">
-        <h3>Collaboration</h3>
-        <ul class="collaboration-list">
-          <li *ngFor="let item of collaboration.controls; let i = index" class="collaboration-item">
-            <input matInput [formControlName]="i" placeholder="Collaboration item">
-            <button mat-button color="warn" class="remove-button" (click)="removeCollaborationItem(i)">Remove</button>
-          </li>
-        </ul>
-        <button mat-button color="primary" (click)="addCollaborationItem()">Add Collaboration</button>
+<div style="display: flex; flex-direction: column; align-items: center; padding: 20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); width: 500px; max-width: 100%;">
+  <h1 style="font-size: 24px; color: #2c3e50; margin-bottom: 20px; text-align: center;">{{ data?.id ? 'Edit' : 'Add' }} Introduction</h1>
+  <div style="width: 100%;">
+    <form [formGroup]="introductionForm" style="width: 100%;">
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; font-weight: bold; margin-bottom: 8px;">Origins</label>
+        <input type="text" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" formControlName="origins">
+      </div>
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; font-weight: bold; margin-bottom: 8px;">Methodology</label>
+        <input type="text" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" formControlName="methodology">
+      </div>
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; font-weight: bold; margin-bottom: 8px;">Impact</label>
+        <input type="text" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" formControlName="impact">
       </div>
 
-      <div formArrayName="speculations">
-        <h3>Speculations</h3>
-        <ul class="speculations-list">
-          <li *ngFor="let item of speculations.controls; let i = index" class="speculations-item">
-            <input matInput [formControlName]="i" placeholder="Speculations item">
-            <button mat-button color="warn" class="remove-button" (click)="removeSpeculationItem(i)">Remove</button>
+      <div style="margin-top: 20px;">
+        <h3 style="font-size: 18px; color: #2c3e50;">Collaboration</h3>
+        <ul style="list-style-type: none; padding: 0; margin: 0;">
+          <li *ngFor="let item of collaboration.controls; let i = index" style="display: flex; align-items: center; margin-bottom: 8px;">
+            <input type="text" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-right: 10px;" [formControlName]="i" placeholder="Collaboration item">
+            <button type="button" style="margin-left: 8px; background-color: #e74c3c; color: white; padding: 8px 12px; border: none; border-radius: 4px;" (click)="removeCollaborationItem(i)">Remove</button>
           </li>
         </ul>
-        <button mat-button color="primary" (click)="addSpeculationItem()">Add Speculations</button>
+        <button type="button" style="margin-top: 10px; background-color: #3498db; color: white; padding: 8px 12px; border: none; border-radius: 4px;" (click)="addCollaborationItem()">Add Collaboration</button>
       </div>
 
-      <div formArrayName="learning">
-        <h3>Learning</h3>
-        <ul class="learning-list">
-          <li *ngFor="let item of learning.controls; let i = index" class="learning-item">
-            <input matInput [formControlName]="i" placeholder="Learning item">
-            <button mat-button color="warn" class="remove-button" (click)="removeLearningItem(i)">Remove</button>
+      <div style="margin-top: 20px;">
+        <h3 style="font-size: 18px; color: #2c3e50;">Speculations</h3>
+        <ul style="list-style-type: none; padding: 0; margin: 0;">
+          <li *ngFor="let item of speculations.controls; let i = index" style="display: flex; align-items: center; margin-bottom: 8px;">
+            <input type="text" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-right: 10px;" [formControlName]="i" placeholder="Speculations item">
+            <button type="button" style="margin-left: 8px; background-color: #e74c3c; color: white; padding: 8px 12px; border: none; border-radius: 4px;" (click)="removeSpeculationItem(i)">Remove</button>
           </li>
         </ul>
-        <button mat-button color="primary" (click)="addLearningItem()">Add Learning</button>
+        <button type="button" style="margin-top: 10px; background-color: #3498db; color: white; padding: 8px 12px; border: none; border-radius: 4px;" (click)="addSpeculationItem()">Add Speculations</button>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <h3 style="font-size: 18px; color: #2c3e50;">Learning</h3>
+        <ul style="list-style-type: none; padding: 0; margin: 0;">
+          <li *ngFor="let item of learning.controls; let i = index" style="display: flex; align-items: center; margin-bottom: 8px;">
+            <input type="text" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-right: 10px;" [formControlName]="i" placeholder="Learning item">
+            <button type="button" style="margin-left: 8px; background-color: #e74c3c; color: white; padding: 8px 12px; border: none; border-radius: 4px;" (click)="removeLearningItem(i)">Remove</button>
+          </li>
+        </ul>
+        <button type="button" style="margin-top: 10px; background-color: #3498db; color: white; padding: 8px 12px; border: none; border-radius: 4px;" (click)="addLearningItem()">Add Learning</button>
       </div>
     </form>
   </div>
-  <div mat-dialog-actions class="actions">
-    <button mat-button (click)="close()">Cancel</button>
-    <button mat-button (click)="save()">Save</button>
+  <div style="display: flex; justify-content: flex-end; width: 100%; margin-top: 20px;">
+    <button type="button" style="min-width: 100px; padding: 8px 16px; font-size: 16px; margin-left: 10px; background-color: #ccc; border: none; border-radius: 4px;" (click)="close()">Cancel</button>
+    <button type="button" style="min-width: 100px; padding: 8px 16px; font-size: 16px; margin-left: 10px; background-color: #2ecc71; color: white; border: none; border-radius: 4px;" (click)="save()">Save</button>
   </div>
 </div>
-

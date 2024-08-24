@@ -33,4 +33,5 @@ export class ExhaustiveTutorialService {
   updateExhaustiveTutorial(id: string, introduction: ExhaustiveTutorial): Observable<ExhaustiveTutorial> {
     return this.http.put<ExhaustiveTutorial>(`${this.apiUrl}/${id}`, introduction);
   }
+  
 }

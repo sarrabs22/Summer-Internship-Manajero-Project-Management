@@ -1,7 +1,7 @@
 <nb-card class="col-md-12 col-lg-12 col-xxxl-12">
   <nb-card-body>
     <nb-stepper orientation="horizontal">
-      <!-- Why Adaptive Software Development -->
+      <!-- Introduction ASD -->
       <nb-step label="Introduction ASD">
         <div class="asd-container" *ngIf="introduction">
 
@@ -32,7 +32,7 @@
             </div>
           </div>
           <div class="image-container">
-            <img src="assets/images/ASDLifeCycle.png" alt="ASD Lifecycle" class="img-fluid my-4">
+            <img src="assets/images/ASDLifeCycle.png" alt="ASD Lifecycle" class="img-fluid my-2">
           </div>
           <div class="grid-container">
             <div class="advantages">
@@ -62,44 +62,49 @@
           </div>
         </div>
         <div class="button-group">
-          <button nbButton (click)="addIntroduction()">Add New Introduction</button>
-          <button nbButton nbStepperNext>Next</button>
+          <button nbButton (click)="addIntroduction()" *ngIf="!introduction">Add New Introduction</button>
+          <button nbButton nbStepperNext>
+            <i class="fas fa-arrow-right"></i> <!-- Next Arrow Icon -->
+          </button>
         </div>
-
       </nb-step>
 
-      <!-- What is Adaptive Software Development -->
+      <!-- Exhaustive Tutorial -->
       <nb-step label="Exhaustive Tutorial">
         <div *ngIf="exhaustiveTutorial">
 
           <h3 class="step-title">What is Adaptive Software Development?</h3>
-
-          <div class="quadrant">
-            <h4><i class="fas fa-question-circle"></i> Why</h4>
-            <p>{{ exhaustiveTutorial.why }}</p>
+          <div class="grid-container">
+            <div class="quadrant">
+              <h4><i class="fas fa-question-circle"></i> Why</h4>
+              <p>{{ exhaustiveTutorial.why }}</p>
+            </div>
+            <div class="quadrant">
+              <h4><i class="fas fa-cogs"></i> What</h4>
+              <p>{{ exhaustiveTutorial.what }}</p>
+            </div>
+            <div class="quadrant">
+              <h4><i class="fas fa-user-friends"></i> How</h4>
+              <p>{{ exhaustiveTutorial.how }}</p>
+            </div>
+            <div class="quadrant">
+              <h4><i class="fas fa-tools"></i> What if</h4>
+              <p>{{ exhaustiveTutorial.whatIf }}</p>
+            </div>
           </div>
-          <div class="quadrant">
-            <h4><i class="fas fa-cogs"></i> What</h4>
-            <p>{{ exhaustiveTutorial.what }}</p>
-          </div>
-          <div class="quadrant">
-            <h4><i class="fas fa-user-friends"></i> How</h4>
-            <p>{{ exhaustiveTutorial.how }}</p>
-          </div>
-          <div class="quadrant">
-            <h4><i class="fas fa-tools"></i> What if</h4>
-            <p>{{ exhaustiveTutorial.whatIf }}</p>
-          </div>
-
           <div class="button-group">
             <button nbButton (click)="editExhaustiveTutorial(exhaustiveTutorial)">Edit</button>
             <button nbButton (click)="deleteExhaustiveTutorial(exhaustiveTutorial.id)">Delete</button>
           </div>
         </div>
         <div class="button-group">
-          <button nbButton (click)="addExhaustiveTutorial()">Add New Tutorial</button>
-          <button nbButton nbStepperPrevious>Prev</button>
-          <button nbButton nbStepperNext>Next</button>
+          <button nbButton (click)="addExhaustiveTutorial()" *ngIf="!exhaustiveTutorial">Add New Tutorial</button>
+          <button nbButton nbStepperPrevious>
+            <i class="fas fa-arrow-left"></i> <!-- Previous Arrow Icon -->
+          </button>
+          <button nbButton nbStepperNext>
+            <i class="fas fa-arrow-right"></i> <!-- Next Arrow Icon -->
+          </button>
         </div>
       </nb-step>
 
@@ -128,8 +133,7 @@
             <div class="dashboard-item">
               <i class="fas fa-chart-line"></i>
               <h5>Continuous Evaluation</h5>
-
-              <p>Includes tools for ongoing assessment of the project's progress and success.</p>
+              <p>{{ howToImplement.continuousEvaluation }}</p>
             </div>
           </div>
           <div class="button-group">
@@ -138,9 +142,13 @@
           </div>
         </div>
         <div class="button-group">
-          <button nbButton (click)="addHowToImplement()">Add New Implementation Step</button>
-          <button nbButton nbStepperPrevious>Prev</button>
-          <button nbButton nbStepperNext>Next</button>
+          <button nbButton (click)="addHowToImplement()" *ngIf="!howToImplement">Add New Implementation Step</button>
+          <button nbButton nbStepperPrevious>
+            <i class="fas fa-arrow-left"></i> <!-- Previous Arrow Icon -->
+          </button>
+          <button nbButton nbStepperNext>
+            <i class="fas fa-arrow-right"></i> <!-- Next Arrow Icon -->
+          </button>
         </div>
       </nb-step>
 
@@ -172,11 +180,13 @@
           </div>
         </div>
         <div class="button-group">
-          <button nbButton (click)="addSummary()">Add New Summary</button>
-          <button nbButton nbStepperPrevious>Prev</button>
+          <button nbButton (click)="addSummary()" *ngIf="!summary">Add New Summary</button>
+          <button nbButton nbStepperPrevious>
+            <i class="fas fa-arrow-left"></i> <!-- Previous Arrow Icon -->
+          </button>
+        
           <button nbButton (click)="useMethod()">Use Method</button>
         </div>
-
       </nb-step>
     </nb-stepper>
   </nb-card-body>
