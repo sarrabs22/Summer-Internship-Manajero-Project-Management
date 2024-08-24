@@ -18,6 +18,7 @@ export class StatisticsComponent implements OnInit {
   percentageOfCompletedTasks: number = 0;
   projectCompletionPercentage: number = 0;
   taskCompletionRate: number = 0;
+  statistics: any[] = [];
 
   constructor(
     private statisticsService: StatisticsService,
